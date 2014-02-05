@@ -34,6 +34,16 @@ class Disqus extends \yii\base\Widget {
     public $settings = [];
 
     /**
+     * @var string to be displayed if browser does not support javascript 
+     */
+    public $noscript = 'Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a>';
+
+    /**
+     * @var string Disqus credits to be displayed at the end of the widget
+     */
+    public $credits = '<a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>';
+
+    /**
      * @throws CHttpException
      */
     public function init() {
@@ -44,10 +54,10 @@ class Disqus extends \yii\base\Widget {
         $variables = "";
         foreach ($this->settings as $key => $value) {
             $variables = ($key == 'disable_mobile') ?
-                    "var discus_{$key} = {$value};\n" :
-                    "var discus_{$key} = '{$value}';\n";
+                    "var disqus_{$key} = {$value};\n" :
+                    "var disqus_{$key} = '{$value}';\n";
         }
-        echo $this->render('disqus', ['variables' => $variables]);
+        echo $this->render('disqus', ['variables' => $variables, 'credits' => $this->credits, 'noscript' => $this->noscript]);
     }
 
 }
