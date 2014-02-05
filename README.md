@@ -1,4 +1,4 @@
-yii2-disqus
+yii2-social
 ===========
 
-A Yii 2 widget for adding DISQUS support to your site
+Set of useful widgets for Yii Framework 2.0 integrating social functionalities from DISQUS, Facebook, Twitter etc.
