@@ -49,7 +49,8 @@ class Disqus extends \yii\base\Widget {
     public $credits = '<a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>';
 
     /**
-     * @throws CHttpException
+     * Initialize the widget
+     * @throws InvalidConfigException
      */
     public function init() {
         parent::init();
