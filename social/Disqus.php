@@ -8,8 +8,6 @@
 
 namespace kartik\social;
 
-use yii\helpers\Html;
-use yii\helpers\ArrayHelper;
 use yii\base\InvalidConfigException;
 
 /**
@@ -34,12 +32,19 @@ class Disqus extends \yii\base\Widget {
     public $settings = [];
 
     /**
-     * @var string to be displayed if browser does not support javascript 
+     *
+     * @var boolean whether to display the comment count summary instead of the 
+     * detailed Disqus standard comments widget
+     */
+    public $showCount = false;
+
+    /**
+     * @var string text to be displayed if browser does not support javascript 
      */
     public $noscript = 'Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a>';
 
     /**
-     * @var string Disqus credits to be displayed at the end of the widget
+     * @var string text for Disqus credits to be displayed at the end of the widget
      */
     public $credits = '<a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>';
 
@@ -53,11 +58,13 @@ class Disqus extends \yii\base\Widget {
         }
         $variables = "";
         foreach ($this->settings as $key => $value) {
-            $variables = ($key == 'disable_mobile') ?
+            $variables .= ($key == 'disable_mobile') ?
                     "var disqus_{$key} = {$value};\n" :
                     "var disqus_{$key} = '{$value}';\n";
         }
-        echo $this->render('disqus', ['variables' => $variables, 'credits' => $this->credits, 'noscript' => $this->noscript]);
+        $params = ['variables' => $variables, 'credits' => $this->credits, 'noscript' => $this->noscript];
+        $view = ($this->showCount) ? 'count' : 'disqus';
+        echo $this->render($view, $params);
     }
 
 }

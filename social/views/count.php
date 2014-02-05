@@ -8,23 +8,22 @@
 use yii\helpers\Html;
 
 /**
- * Comments widget template for yii\social\Disqus widget
+ * Comment count template for yii\social\Disqus widget
  *
  * @author Kartik Visweswaran <kartikv2@gmail.com>
  * @since 1.0
  */
 ?>
-<div id="disqus_thread"></div>
 <script type="text/javascript">
     /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
     <?= $variables ?>
-
     /* * * DON'T EDIT BELOW THIS LINE * * */
     (function() {
-        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
-        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
-        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
-    })();
+        var s = document.createElement('script');
+        s.async = true;
+        s.type = 'text/javascript';
+        s.src = '//' + disqus_shortname + '.disqus.com/count.js';
+        (document.getElementsByTagName('HEAD')[0] || document.getElementsByTagName('BODY')[0]).appendChild(s);
+    }());
 </script>
 <noscript><?= $noscript ?></noscript>
-<?= $credits ?>
