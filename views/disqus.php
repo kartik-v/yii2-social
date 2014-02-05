@@ -1,0 +1,31 @@
+<?php
+
+/**
+ * @copyright Copyright &copy; Kartik Visweswaran, Krajee.com, 2013
+ * @package yii2-social
+ * @version 1.0.0
+ */
+use yii\helpers\Html;
+
+/**
+ * View template for yii\social\Disqus widget
+ *
+ * @author Kartik Visweswaran <kartikv2@gmail.com>
+ * @since 1.0
+ */
+?>
+<div id="disqus_thread"></div>
+<script type="text/javascript">
+    /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+    <?= $variables ?>
+
+    /* * * DON'T EDIT BELOW THIS LINE * * */
+    (function() {
+        var dsq = document.createElement('script');
+        dsq.type = 'text/javascript';
+        dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
