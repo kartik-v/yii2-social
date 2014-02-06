@@ -12,7 +12,11 @@ use yii\base\InvalidConfigException;
 
 /**
  * Widget to embed Disqus comments on  your website
- *
+ * Usage:
+ * ```
+ * echo Disqus::widget([
+ *     'settings' => ['shortname' => 'DISQUS_SHORTNAME']
+ * ]);
  * @author Kartik Visweswaran <kartikv2@gmail.com>
  * @since 1.0
  */
