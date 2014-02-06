@@ -17,6 +17,7 @@ use yii\base\InvalidConfigException;
  * echo Disqus::widget([
  *     'settings' => ['shortname' => 'DISQUS_SHORTNAME']
  * ]);
+ * ```
  * @author Kartik Visweswaran <kartikv2@gmail.com>
  * @since 1.0
  */
