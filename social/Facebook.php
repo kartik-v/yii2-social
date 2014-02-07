@@ -65,7 +65,7 @@ class Facebook extends \yii\base\Widget {
     public function init() {
         parent::init();
         if (empty($this->appId)) {
-            throw new InvalidConfigException("The Facebook 'appId' must be defined.");
+            throw new InvalidConfigException("The Facebook 'appId' has not been set.");
         }
         $settings = ['class' => $this->type];
         if (!isset($this->noscript)) {
