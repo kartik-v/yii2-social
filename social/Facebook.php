@@ -13,7 +13,13 @@ use yii\helpers\Html;
 
 /**
  * Widget to render various Facebook plugins
- *
+ * Usage:
+ * ```
+ * echo Facebook::widget([
+ *     'type' => Facebook::COMMENT,
+ *     'settings' => ['colorscheme' => 'dark']
+ * ]);
+ * ```
  * @author Kartik Visweswaran <kartikv2@gmail.com>
  * @since 1.0
  */
@@ -85,7 +91,7 @@ class Facebook extends \yii\base\Widget {
     /**
      * Registers the necessary assets
      */
-    protected function registerAssets() {      
+    protected function registerAssets() {
         $view = $this->getView();
         $js = <<< SCRIPT
 (function(d, s, id) {
@@ -100,4 +106,5 @@ class Facebook extends \yii\base\Widget {
 SCRIPT;
         $view->registerJs($js);
     }
+
 }
