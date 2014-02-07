@@ -12,12 +12,7 @@ use yii\base\InvalidConfigException;
 
 /**
  * Widget to embed Disqus comments on  your website
- * Usage:
- * ```
- * echo Disqus::widget([
- *     'settings' => ['shortname' => 'DISQUS_SHORTNAME']
- * ]);
- * ```
+ *
  * @author Kartik Visweswaran <kartikv2@gmail.com>
  * @since 1.0
  */
@@ -49,6 +44,11 @@ class Disqus extends \yii\base\Widget {
     public $noscript = 'Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a>';
 
     /**
+     * @var string HTML attributes for the noscript message container
+     */
+    public $noscriptOptions = ['class' => 'alert alert-danger'];    
+
+    /**
      * @var string text for Disqus credits to be displayed at the end of the widget
      */
     public $credits = '<a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>';
@@ -68,8 +68,12 @@ class Disqus extends \yii\base\Widget {
                     "var disqus_{$key} = {$value};\n" :
                     "var disqus_{$key} = '{$value}';\n";
         }
-        $params = ['variables' => $variables, 'credits' => $this->credits, 'noscript' => $this->noscript];
-        $view = ($this->showCount) ? 'count' : 'disqus';
+        $params = [
+            'variables' => $variables, 
+            'credits' => $this->credits, 
+            'noscript' => Html::tag('div', $this->noscript, $this->noscriptOptions)
+        ];
+        $view = ($this->showCount) ? 'disqus-count' : 'disqus-comments';
         echo $this->render($view, $params);
     }
 
