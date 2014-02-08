@@ -8,22 +8,26 @@
 
 namespace kartik\social;
 
+use Yii;
 use yii\base\InvalidConfigException;
 use yii\helpers\Html;
 
 /**
  * Widget to render various Facebook plugins
+ * 
  * Usage:
  * ```
- * echo Facebook::widget([
- *     'type' => Facebook::COMMENT,
+ * echo FacebookWidget::widget([
+ *     'appId' => 'FACEBOOK_APP_ID',
+ *     'type' => FacebookWidget::COMMENT,
  *     'settings' => ['colorscheme' => 'dark']
  * ]);
  * ```
+ * 
  * @author Kartik Visweswaran <kartikv2@gmail.com>
  * @since 1.0
  */
-class Facebook extends \yii\base\Widget {
+class FacebookWidget extends \yii\base\Widget {
 
     const LIKE = 'fb-like';
     const SHARE = 'fb-share-button';
@@ -65,11 +69,20 @@ class Facebook extends \yii\base\Widget {
     public $noscriptOptions = ['class' => 'alert alert-danger'];
 
     /**
+     * @var string the name of the Facebook API Module
+     */
+    public $moduleName = 'facebook';
+
+    /**
      * Initialize the widget
      * @throws InvalidConfigException
      */
     public function init() {
         parent::init();
+        $module = Yii::$app->getModule($this->moduleName);
+        if ($module !== null && empty($this->appId)) {
+            $this->appId = $module->appId;
+        }
         if (empty($this->appId)) {
             throw new InvalidConfigException("The Facebook 'appId' has not been set.");
         }

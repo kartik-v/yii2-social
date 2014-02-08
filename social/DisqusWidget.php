@@ -13,11 +13,18 @@ use yii\helpers\Html;
 
 /**
  * Widget to embed Disqus comments on  your website
- *
+ * 
+ * Usage:
+ * ```
+ * echo DisqusWidget::widget([
+ *     'settings' => ['shortname' => 'DISQUS_SHORTNAME']
+ * ]);
+ * ```
+ * 
  * @author Kartik Visweswaran <kartikv2@gmail.com>
  * @since 1.0
  */
-class Disqus extends \yii\base\Widget {
+class DisqusWidget extends \yii\base\Widget {
 
     /**
      * @var array the Disqus settings
