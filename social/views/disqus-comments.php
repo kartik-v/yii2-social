@@ -8,7 +8,7 @@
 use yii\helpers\Html;
 
 /**
- * Comments widget template for yii\social\Disqus widget
+ * Comments plugin view template for yii\social\Disqus widget
  *
  * @author Kartik Visweswaran <kartikv2@gmail.com>
  * @since 1.0
@@ -26,5 +26,5 @@ use yii\helpers\Html;
         (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
     })();
 </script>
-<noscript><?= $noscript ?></noscript>
+<?= $noscript ?>
 <?= $credits ?>

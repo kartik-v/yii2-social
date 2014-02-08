@@ -8,6 +8,7 @@
 
 namespace kartik\social;
 
+use Yii;
 use yii\base\InvalidConfigException;
 use yii\helpers\Html;
 
@@ -16,7 +17,7 @@ use yii\helpers\Html;
  * 
  * Usage:
  * ```
- * echo DisqusWidget::widget([
+ * echo Disqus::widget([
  *     'settings' => ['shortname' => 'DISQUS_SHORTNAME']
  * ]);
  * ```
@@ -24,7 +25,7 @@ use yii\helpers\Html;
  * @author Kartik Visweswaran <kartikv2@gmail.com>
  * @since 1.0
  */
-class DisqusWidget extends \yii\base\Widget {
+class Disqus extends SocialWidget {
 
     /**
      * @var array the Disqus settings
@@ -40,26 +41,15 @@ class DisqusWidget extends \yii\base\Widget {
     public $settings = [];
 
     /**
-     *
      * @var boolean whether to display the comment count summary instead of the 
      * detailed Disqus standard comments widget
      */
     public $showCount = false;
 
     /**
-     * @var string text to be displayed if browser does not support javascript 
-     */
-    public $noscript = 'Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a>';
-
-    /**
-     * @var string HTML attributes for the noscript message container
-     */
-    public $noscriptOptions = ['class' => 'alert alert-danger'];    
-
-    /**
      * @var string text for Disqus credits to be displayed at the end of the widget
      */
-    public $credits = '<a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>';
+    public $credits;
 
     /**
      * Initialize the widget
@@ -67,6 +57,8 @@ class DisqusWidget extends \yii\base\Widget {
      */
     public function init() {
         parent::init();
+        $this->credits = Html::a(Yii::t('social', 'comments powered by Disqus'), 'http://disqus.com/?ref_noscript');
+        $this->noscript = Yii::t('social', 'Please enable JavaScript to view the {pluginLink}.', ['pluginLink' => $this->credits]);
         if (empty($this->settings['shortname'])) {
             throw new InvalidConfigException("Disqus 'shortname' has not been set in `settings`.");
         }
@@ -77,9 +69,9 @@ class DisqusWidget extends \yii\base\Widget {
                     "var disqus_{$key} = '{$value}';\n";
         }
         $params = [
-            'variables' => $variables, 
-            'credits' => $this->credits, 
-            'noscript' => Html::tag('div', $this->noscript, $this->noscriptOptions)
+            'variables' => $variables,
+            'credits' => $this->credits,
+            'noscript' => $this->getNoScript()
         ];
         $view = ($this->showCount) ? 'disqus-count' : 'disqus-comments';
         echo $this->render($view, $params);

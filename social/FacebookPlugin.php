@@ -17,9 +17,9 @@ use yii\helpers\Html;
  * 
  * Usage:
  * ```
- * echo FacebookWidget::widget([
+ * echo FacebookPlugin::widget([
  *     'appId' => 'FACEBOOK_APP_ID',
- *     'type' => FacebookWidget::COMMENT,
+ *     'type' => FacebookPlugin::COMMENT,
  *     'settings' => ['colorscheme' => 'dark']
  * ]);
  * ```
@@ -27,7 +27,7 @@ use yii\helpers\Html;
  * @author Kartik Visweswaran <kartikv2@gmail.com>
  * @since 1.0
  */
-class FacebookWidget extends \yii\base\Widget {
+class FacebookPlugin extends SocialWidget {
 
     const LIKE = 'fb-like';
     const SHARE = 'fb-share-button';
@@ -59,16 +59,6 @@ class FacebookWidget extends \yii\base\Widget {
     public $settings = [];
 
     /**
-     * @var string text to be displayed if browser does not support javascript 
-     */
-    public $noscript;
-
-    /**
-     * @var string HTML attributes for the noscript message container
-     */
-    public $noscriptOptions = ['class' => 'alert alert-danger'];
-
-    /**
      * @var string the name of the Facebook API Module
      */
     public $moduleName = 'facebook';
@@ -88,17 +78,18 @@ class FacebookWidget extends \yii\base\Widget {
         }
         $settings = ['class' => $this->type];
         if (!isset($this->noscript)) {
-            $this->noscript = 'Please enable JavaScript on your browser to view the Facebook ' .
-                    str_replace('fb-', '', $this->type) . ' plugin.';
+            $this->noscript = Yii::t('social', 
+                'Please enable JavaScript on your browser to view the Facebook {pluginName} plugin correctly on this site.', 
+                ['pluginName' => Yii::t('social', str_replace('fb-', '', $this->type))]
+            );
         }
         foreach ($this->settings as $key => $value) {
             $settings["data_{$key}"] = $value;
         }
         $this->registerAssets();
         echo "<div id='fb-root'></div>\n" .
-        Html::tag('div', '', $settings) . "\n<noscript>" .
-        Html::tag('div', $this->noscript, $this->noscriptOptions) .
-        '</noscript>';
+        Html::tag('div', '', $settings) . "\n" .
+        "<noscript>" . Html::tag('div', $this->noscript, $this->noscriptOptions) . "</noscript>";
     }
 
     /**

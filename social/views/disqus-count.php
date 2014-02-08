@@ -8,7 +8,7 @@
 use yii\helpers\Html;
 
 /**
- * Comment count template for yii\social\Disqus widget
+ * Comment count view template for yii\social\Disqus widget
  *
  * @author Kartik Visweswaran <kartikv2@gmail.com>
  * @since 1.0
@@ -26,4 +26,4 @@ use yii\helpers\Html;
         (document.getElementsByTagName('HEAD')[0] || document.getElementsByTagName('BODY')[0]).appendChild(s);
     }());
 </script>
-<noscript><?= $noscript ?></noscript>
+<?= $noscript ?>
