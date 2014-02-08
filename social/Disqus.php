@@ -9,6 +9,7 @@
 namespace kartik\social;
 
 use yii\base\InvalidConfigException;
+use yii\helpers\Html;
 
 /**
  * Widget to embed Disqus comments on  your website
