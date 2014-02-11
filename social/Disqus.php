@@ -25,7 +25,7 @@ use yii\helpers\Html;
  * @author Kartik Visweswaran <kartikv2@gmail.com>
  * @since 1.0
  */
-class Disqus extends SocialWidget {
+class Disqus extends Widget {
 
     /**
      * @var array the Disqus settings
@@ -57,6 +57,7 @@ class Disqus extends SocialWidget {
      */
     public function init() {
         parent::init();
+        $config = $this->setConfig('disqus');
         $this->credits = Html::a(Yii::t('social', 'comments powered by Disqus'), 'http://disqus.com/?ref_noscript');
         $this->noscript = Yii::t('social', 'Please enable JavaScript to view the {pluginLink}.', ['pluginLink' => $this->credits]);
         if (empty($this->settings['shortname'])) {

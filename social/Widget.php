@@ -18,16 +18,16 @@ use yii\helpers\Html;
  * @author Kartik Visweswaran <kartikv2@gmail.com>
  * @since 1.0
  */
-class SocialWidget extends \yii\base\Widget {
+class Widget extends \yii\base\Widget {
 
     /**
      * @var string text to be displayed if browser does not support javascript.
-     * if set to false will not displayed;
+     * If set to false will not displayed;
      */
     public $noscript;
 
     /**
-     * @var string HTML attributes for the noscript message container
+     * @var array HTML attributes for the noscript message container
      */
     public $noscriptOptions = ['class' => 'alert alert-danger'];
 
@@ -37,8 +37,13 @@ class SocialWidget extends \yii\base\Widget {
     public $i18n = [];
 
     /**
+     * @var string the name of the module
+     */
+    public $moduleName = 'social';
+
+    /**
      * Initialize the widget
-     */    
+     */
     public function init() {
         parent::init();
         Yii::setAlias('@social', dirname(__FILE__));
@@ -51,7 +56,33 @@ class SocialWidget extends \yii\base\Widget {
         }
         Yii::$app->i18n->translations['social'] = $this->i18n;
         $this->noscript = Yii::t('social', 'You must enable Javascript on your browser for the site to work optimally and display sections completely.');
-    }	
+    }
+
+    /**
+     * Gets configuration for a widget from the module
+     * @param string $widget name of the widget
+     * @return array
+     */
+    public function getConfig($widget) {
+        $module = Yii::$app->getModule($this->moduleName);
+        return isset($module->$widget) ? $module->$widget : [];
+    }
+
+    /**
+     * Sets configuration for a widget based on the module level configuration
+     * @param string $widget name of the widget
+     */
+    public function setConfig($widget) {
+        $config = $this->getConfig($widget);
+        if (empty($config)) {
+            return;
+        }
+        foreach ($config as $key => $value) {
+            if (empty($this->$key)) {
+                $this->$key = $value;
+            }
+        }
+    }
 
     /**
      * Generates the noscript container

@@ -25,7 +25,7 @@ use yii\helpers\Html;
  * @author Kartik Visweswaran <kartikv2@gmail.com>
  * @since 1.0
  */
-class GoogleAnalytics extends SocialWidget {
+class GoogleAnalytics extends Widget {
 
     /**
      * @var string the Google Analytics Tracking ID
@@ -53,6 +53,7 @@ class GoogleAnalytics extends SocialWidget {
      */
     public function init() {
         parent::init();
+        $this->setConfig('googleAnalytics');
         if (empty($this->id)) {
             throw new InvalidConfigException("Google analytics tracking 'id' has not been set.");
         }

@@ -27,7 +27,7 @@ use yii\helpers\Html;
  * @author Kartik Visweswaran <kartikv2@gmail.com>
  * @since 1.0
  */
-class FacebookPlugin extends SocialWidget {
+class FacebookPlugin extends Widget {
 
     const LIKE = 'fb-like';
     const SHARE = 'fb-share-button';
@@ -59,28 +59,18 @@ class FacebookPlugin extends SocialWidget {
     public $settings = [];
 
     /**
-     * @var string the name of the Facebook API Module
-     */
-    public $moduleName = 'facebook';
-
-    /**
      * Initialize the widget
      * @throws InvalidConfigException
      */
     public function init() {
         parent::init();
-        $module = Yii::$app->getModule($this->moduleName);
-        if ($module !== null && empty($this->appId)) {
-            $this->appId = $module->appId;
-        }
+        $this->setConfig('facebook');
         if (empty($this->appId)) {
             throw new InvalidConfigException("The Facebook 'appId' has not been set.");
         }
         $settings = ['class' => $this->type];
         if (!isset($this->noscript)) {
-            $this->noscript = Yii::t('social', 
-                'Please enable JavaScript on your browser to view the Facebook {pluginName} plugin correctly on this site.', 
-                ['pluginName' => Yii::t('social', str_replace('fb-', '', $this->type))]
+            $this->noscript = Yii::t('social', 'Please enable JavaScript on your browser to view the Facebook {pluginName} plugin correctly on this site.', ['pluginName' => Yii::t('social', str_replace('fb-', '', $this->type))]
             );
         }
         foreach ($this->settings as $key => $value) {
