@@ -65,7 +65,7 @@ class GoogleAnalytics extends Widget {
             'domain' => $this->domain,
             'newVersion' => $this->newVersion,
             'oldVersion' => $this->oldVersion,
-            'noscript' => $this->getNoScript()
+            'noscript' => $this->renderNoScript()
         ];
         echo $this->render('google-analytics', $params);
     }

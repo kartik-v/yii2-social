@@ -68,18 +68,13 @@ class FacebookPlugin extends Widget {
         if (empty($this->appId)) {
             throw new InvalidConfigException("The Facebook 'appId' has not been set.");
         }
-        $settings = ['class' => $this->type];
         if (!isset($this->noscript)) {
             $this->noscript = Yii::t('social', 'Please enable JavaScript on your browser to view the Facebook {pluginName} plugin correctly on this site.', ['pluginName' => Yii::t('social', str_replace('fb-', '', $this->type))]
             );
         }
-        foreach ($this->settings as $key => $value) {
-            $settings["data_{$key}"] = $value;
-        }
         $this->registerAssets();
-        echo "<div id='fb-root'></div>\n" .
-        Html::tag('div', '', $settings) . "\n" .
-        "<noscript>" . Html::tag('div', $this->noscript, $this->noscriptOptions) . "</noscript>";
+        $this->setPluginOptions();
+        echo "<div id='fb-root'></div>\n" . $this->renderPlugin();
     }
 
     /**

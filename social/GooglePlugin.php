@@ -38,6 +38,12 @@ class GooglePlugin extends Widget {
     const INTERACTIVE_POST = 'g-interactivepost';
 
     /**
+     * @var string the Google plugin type
+     * defaults to Google Comments
+     */
+    public $type = self::COMMENT;
+
+    /**
      * @var string the Google Plus Client ID.
      */
     public $clientId;
@@ -48,15 +54,9 @@ class GooglePlugin extends Widget {
     public $pageId;
 
     /**
-     * @var string the Google plugin type
-     * defaults to Google Comments
+     * @var array the HTML attributes for the signin container
      */
-    public $type = self::COMMENT;
-
-    /**
-     * @var array the Google plugin settings
-     */
-    public $settings = [];
+    public $signinOptions;
 
     /**
      * @var array list of plugins that use [[pageId]]
@@ -73,21 +73,33 @@ class GooglePlugin extends Widget {
     public function init() {
         parent::init();
         $this->setConfig('google');
-        $settings = ['class' => $this->type];
         if (!isset($this->noscript)) {
-            $this->noscript = Yii::t('social', 'Please enable JavaScript on your browser to view the Google {pluginName} plugin correctly on this site.', ['pluginName' => Yii::t('social', str_replace('fb-', '', $this->type))]
+            $this->noscript = Yii::t('social', 'Please enable JavaScript on your browser to view the Google {pluginName} plugin correctly on this site.', ['pluginName' => Yii::t('social', str_replace('ga-', '', $this->type))]
             );
         }
-        foreach ($this->settings as $key => $value) {
-            $settings["data_{$key}"] = $value;
-        }
-        if (in_array($this->type, self::_pagePlugins)) {
-            $settings["data_href"] = "https://plus.google.com/{$this->pageId}";
+        if ($this->type === self::SIGNIN && empty($this->clientId)) {
+            throw new InvalidConfigException("The Google 'clientId' must be set for signin button.");
         }
         $this->registerAssets();
-        echo "<div id='fb-root'></div>\n" .
-        Html::tag('div', '', $settings) . "\n" .
-        "<noscript>" . Html::tag('div', $this->noscript, $this->noscriptOptions) . "</noscript>";
+        $this->setPluginOptions();
+        $content = Html::tag($this->tag, '', $this->options);
+        if ($this->type === self::SIGNIN) {
+            $content = Html::tag($this->tag, $content, $this->signinOptions);
+        }
+        return $content . "\n" . $this->renderNoScript();
+    }
+
+    /**
+     * Sets the options for the Google plugin
+     */
+    protected function setPluginOptions() {
+        parent::setPluginOptions();
+        if ($this->type === self::SIGNIN) {
+            $this->options["data-clientid"] = $this->clientId;
+        }
+        if (in_array($this->type, self::_pagePlugins)) {
+            $this->options["data-href"] = "https://plus.google.com/{$this->pageId}";
+        }
     }
 
     /**

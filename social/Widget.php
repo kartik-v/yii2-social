@@ -21,6 +21,31 @@ use yii\helpers\Html;
 class Widget extends \yii\base\Widget {
 
     /**
+     * @var string the tag for enclosing the plugin. Defaults to 'div'.
+     */
+    public $tag = 'div';
+
+    /**
+     * @var string the HTML attributes for the plugin container.
+     */
+    public $options = [];
+
+    /**
+     * @var string the social plugin type
+     */
+    public $type;
+
+    /**
+     * @var string text to be prefixed for the data api
+     */
+    public $dataApiPrefix = 'data-';
+    
+    /**
+     * @var array the social plugin settings
+     */
+    public $settings = [];
+
+    /**
      * @var string text to be displayed if browser does not support javascript.
      * If set to false will not displayed;
      */
@@ -85,14 +110,33 @@ class Widget extends \yii\base\Widget {
     }
 
     /**
+     * Generates the plugin markup
+     * @return string
+     */
+    protected function renderPlugin() {
+        return Html::tag($this->tag, '', $this->options) . "\n" . $this->renderNoScript();
+    }
+    
+    /**
      * Generates the noscript container
      * @return string
      */
-    protected function getNoScript() {
+    protected function renderNoScript() {
         if ($this->noscript == false) {
             return '';
         }
         return '<noscript>' . Html::tag('div', $this->noscript, $this->noscriptOptions) . '</noscript>';
+    }
+
+    /**
+     * Sets the options for the  plugin
+     */
+    protected function setPluginOptions() {
+        $this->options = ['class' => $this->type];
+        foreach ($this->settings as $key => $value) {
+            $key = str_replace($this->dataApiPrefix, "", $key);
+            $this->options[$this->dataApiPrefix . $key] = $value;
+        }
     }
 
 }

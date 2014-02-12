@@ -26,20 +26,7 @@ use yii\helpers\Html;
  * @since 1.0
  */
 class Disqus extends Widget {
-
-    /**
-     * @var array the Disqus settings
-     * - shortname: string the disqus forum shortname
-     * - identifier: string the disqus identifier for your page
-     * - title: string the disqus title of the current page
-     * - url: string the URL of the current page. If not set will be set to 
-     *   the `window.location.href`
-     * - category_id: string the category to be used for the current page. This 
-     *   is used when creating the thread on Disqus for the first time.
-     * - disable_mobile: boolean disable use of mobile optimized version of Disqus.
-     */
-    public $settings = [];
-
+    
     /**
      * @var boolean whether to display the comment count summary instead of the 
      * detailed Disqus standard comments widget
@@ -72,7 +59,7 @@ class Disqus extends Widget {
         $params = [
             'variables' => $variables,
             'credits' => $this->credits,
-            'noscript' => $this->getNoScript()
+            'noscript' => $this->renderNoScript()
         ];
         $view = ($this->showCount) ? 'disqus-count' : 'disqus-comments';
         echo $this->render($view, $params);
