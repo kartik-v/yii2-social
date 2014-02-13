@@ -39,7 +39,7 @@ class Widget extends \yii\base\Widget {
      * @var string text to be prefixed for the data api
      */
     public $dataApiPrefix = 'data-';
-    
+
     /**
      * @var array the social plugin settings
      */
@@ -103,7 +103,7 @@ class Widget extends \yii\base\Widget {
             return;
         }
         foreach ($config as $key => $value) {
-            if (empty($this->$key)) {
+            if (property_exists(get_class($this), $key) && empty($this->$key)) {
                 $this->$key = $value;
             }
         }
@@ -116,7 +116,7 @@ class Widget extends \yii\base\Widget {
     protected function renderPlugin() {
         return Html::tag($this->tag, '', $this->options) . "\n" . $this->renderNoScript();
     }
-    
+
     /**
      * Generates the noscript container
      * @return string
