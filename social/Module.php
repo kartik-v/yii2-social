@@ -14,7 +14,8 @@ namespace kartik\social;
  * @author Kartik Visweswaran <kartikv2@gmail.com>
  * @since 1.0
  */
-class Module extends \yii\base\Module {
+class Module extends \yii\base\Module
+{
 
     /**
      * @var array the disqus configuration. You can setup these keys. These can
@@ -83,7 +84,8 @@ class Module extends \yii\base\Module {
      * Returns the Facebook SDK API object
      * @throws InvalidConfigException
      */
-    public function getFbApi() {
+    public function getFbApi()
+    {
         $appId = null;
         $secret = null;
         $fileUpload = false;
@@ -110,7 +112,8 @@ class Module extends \yii\base\Module {
      * Returns the Facebook User ID
      * @return string
      */
-    public function getFbUser() {
+    public function getFbUser()
+    {
         $facebook = $this->getFbApi();
         return $facebook->getUser();
     }

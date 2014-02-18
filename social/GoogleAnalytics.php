@@ -25,7 +25,8 @@ use yii\helpers\Html;
  * @author Kartik Visweswaran <kartikv2@gmail.com>
  * @since 1.0
  */
-class GoogleAnalytics extends Widget {
+class GoogleAnalytics extends Widget
+{
 
     /**
      * @var string the Google Analytics Tracking ID
@@ -51,7 +52,8 @@ class GoogleAnalytics extends Widget {
      * Initialize the widget
      * @throws InvalidConfigException
      */
-    public function init() {
+    public function init()
+    {
         parent::init();
         $this->setConfig('googleAnalytics');
         if (empty($this->id)) {

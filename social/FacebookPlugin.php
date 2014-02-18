@@ -27,7 +27,8 @@ use yii\helpers\Html;
  * @author Kartik Visweswaran <kartikv2@gmail.com>
  * @since 1.0
  */
-class FacebookPlugin extends Widget {
+class FacebookPlugin extends Widget
+{
 
     const LIKE = 'fb-like';
     const SHARE = 'fb-share-button';
@@ -62,7 +63,8 @@ class FacebookPlugin extends Widget {
      * Initialize the widget
      * @throws InvalidConfigException
      */
-    public function init() {
+    public function init()
+    {
         parent::init();
         $this->setConfig('facebook');
         if (empty($this->appId)) {
@@ -80,7 +82,8 @@ class FacebookPlugin extends Widget {
     /**
      * Registers the necessary assets
      */
-    protected function registerAssets() {
+    protected function registerAssets()
+    {
         $view = $this->getView();
         $js = <<< SCRIPT
 (function(d, s, id) {

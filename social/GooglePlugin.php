@@ -25,7 +25,8 @@ use yii\helpers\Html;
  * @author Kartik Visweswaran <kartikv2@gmail.com>
  * @since 1.0
  */
-class GooglePlugin extends Widget {
+class GooglePlugin extends Widget
+{
 
     const SIGNIN = 'g-signin';
     const PLUSONE = 'g-plusone';
@@ -70,7 +71,8 @@ class GooglePlugin extends Widget {
      * Initialize the widget
      * @throws InvalidConfigException
      */
-    public function init() {
+    public function init()
+    {
         parent::init();
         $this->setConfig('google');
         if (!isset($this->noscript)) {
@@ -92,7 +94,8 @@ class GooglePlugin extends Widget {
     /**
      * Sets the options for the Google plugin
      */
-    protected function setPluginOptions() {
+    protected function setPluginOptions()
+    {
         parent::setPluginOptions();
         if ($this->type === self::SIGNIN) {
             $this->options["data-clientid"] = $this->clientId;
@@ -105,7 +108,8 @@ class GooglePlugin extends Widget {
     /**
      * Registers the necessary assets
      */
-    protected function registerAssets() {
+    protected function registerAssets()
+    {
         $view = $this->getView();
         $js = <<< SCRIPT
 (function() {

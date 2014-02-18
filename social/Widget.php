@@ -18,7 +18,8 @@ use yii\helpers\Html;
  * @author Kartik Visweswaran <kartikv2@gmail.com>
  * @since 1.0
  */
-class Widget extends \yii\base\Widget {
+class Widget extends \yii\base\Widget
+{
 
     /**
      * @var string the tag for enclosing the plugin. Defaults to 'div'.
@@ -69,7 +70,8 @@ class Widget extends \yii\base\Widget {
     /**
      * Initialize the widget
      */
-    public function init() {
+    public function init()
+    {
         parent::init();
         Yii::setAlias('@social', dirname(__FILE__));
         if (empty($this->i18n)) {
@@ -88,7 +90,8 @@ class Widget extends \yii\base\Widget {
      * @param string $widget name of the widget
      * @return array
      */
-    public function getConfig($widget) {
+    public function getConfig($widget)
+    {
         $module = Yii::$app->getModule($this->moduleName);
         return isset($module->$widget) ? $module->$widget : [];
     }
@@ -97,7 +100,8 @@ class Widget extends \yii\base\Widget {
      * Sets configuration for a widget based on the module level configuration
      * @param string $widget name of the widget
      */
-    public function setConfig($widget) {
+    public function setConfig($widget)
+    {
         $config = $this->getConfig($widget);
         if (empty($config)) {
             return;
@@ -113,7 +117,8 @@ class Widget extends \yii\base\Widget {
      * Generates the plugin markup
      * @return string
      */
-    protected function renderPlugin() {
+    protected function renderPlugin()
+    {
         return Html::tag($this->tag, '', $this->options) . "\n" . $this->renderNoScript();
     }
 
@@ -121,7 +126,8 @@ class Widget extends \yii\base\Widget {
      * Generates the noscript container
      * @return string
      */
-    protected function renderNoScript() {
+    protected function renderNoScript()
+    {
         if ($this->noscript == false) {
             return '';
         }
@@ -131,7 +137,8 @@ class Widget extends \yii\base\Widget {
     /**
      * Sets the options for the  plugin
      */
-    protected function setPluginOptions() {
+    protected function setPluginOptions()
+    {
         $this->options = ['class' => $this->type];
         foreach ($this->settings as $key => $value) {
             $key = str_replace($this->dataApiPrefix, "", $key);

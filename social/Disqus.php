@@ -25,8 +25,9 @@ use yii\helpers\Html;
  * @author Kartik Visweswaran <kartikv2@gmail.com>
  * @since 1.0
  */
-class Disqus extends Widget {
-    
+class Disqus extends Widget
+{
+
     /**
      * @var boolean whether to display the comment count summary instead of the 
      * detailed Disqus standard comments widget
@@ -42,7 +43,8 @@ class Disqus extends Widget {
      * Initialize the widget
      * @throws InvalidConfigException
      */
-    public function init() {
+    public function init()
+    {
         parent::init();
         $config = $this->setConfig('disqus');
         $this->credits = Html::a(Yii::t('social', 'comments powered by Disqus'), 'http://disqus.com/?ref_noscript');
