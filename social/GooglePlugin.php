@@ -29,20 +29,20 @@ class GooglePlugin extends Widget
 {
 
     const SIGNIN = 'g-signin';
-    const PLUSONE = 'g-plusone';
+    const PLUS_ONE = 'g-plusone';
     const SHARE = 'g-plus';
     const BADGE_PAGE = 'g-page';
     const BADGE_PERSON = 'g-person';
-    const BADGE_PERSON = 'g-community';
+    const BADGE_COMMUNITY = 'g-community';
     const FOLLOW = 'g-follow';
     const HANGOUT = 'g-hangout';
     const INTERACTIVE_POST = 'g-interactivepost';
 
     /**
      * @var string the Google plugin type
-     * defaults to Google Comments
+     * defaults to Google Plus One
      */
-    public $type = self::COMMENT;
+    public $type = self::PLUS_ONE;
 
     /**
      * @var string the Google Plus Client ID.
@@ -100,7 +100,7 @@ class GooglePlugin extends Widget
         if ($this->type === self::SIGNIN) {
             $this->options["data-clientid"] = $this->clientId;
         }
-        if (in_array($this->type, self::_pagePlugins)) {
+        if (in_array($this->type, self::$_pagePlugins)) {
             $this->options["data-href"] = "https://plus.google.com/{$this->pageId}";
         }
     }
