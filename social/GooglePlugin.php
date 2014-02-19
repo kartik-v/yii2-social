@@ -57,7 +57,7 @@ class GooglePlugin extends Widget
     /**
      * @var array the HTML attributes for the signin container
      */
-    public $signinOptions;
+    public $signinOptions = [];
 
     /**
      * @var array list of plugins that use [[pageId]]
@@ -99,6 +99,9 @@ class GooglePlugin extends Widget
         parent::setPluginOptions();
         if ($this->type === self::SIGNIN) {
             $this->options["data-clientid"] = $this->clientId;
+        }
+        if ($this->type === self::SHARE) {
+            $this->options["data-action"] = 'share';
         }
         if (in_array($this->type, self::$_pagePlugins)) {
             $this->options["data-href"] = "https://plus.google.com/{$this->pageId}";
