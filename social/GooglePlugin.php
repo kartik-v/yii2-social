@@ -88,7 +88,7 @@ class GooglePlugin extends Widget
         if ($this->type === self::SIGNIN) {
             $content = Html::tag($this->tag, $content, $this->signinOptions);
         }
-        return $content . "\n" . $this->renderNoScript();
+        echo $content . "\n" . $this->renderNoScript();
     }
 
     /**
