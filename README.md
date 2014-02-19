@@ -1,6 +1,6 @@
 yii2-social
 ===========
-Module that enables access to social plugins for Yii Framework 2.0. . It includes support for embedding plugins from the following networks into your website:
+Module that enables access to social plugins for Yii Framework 2.0. It includes support for embedding plugins from the following networks into your website:
 
 - Disqus
 - Facebook  
