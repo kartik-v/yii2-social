@@ -1,6 +1,6 @@
 {
     "name": "kartik-v/yii2-social",
-    "description": "Set of useful widgets for Yii Framework 2.0 integrating social functionalities from DISQUS, Facebook, Twitter etc.",
+    "description": "Module containing useful widgets for Yii Framework 2.0 that integrates social functionalities from DISQUS, Facebook, Google etc.",
     "keywords": ["yii2", "extension", "widget", "social", "disqus", "facebook", "twitter"],
     "homepage": "https://github.com/kartik-v/yii2-social",
     "type": "yii2-extension",
