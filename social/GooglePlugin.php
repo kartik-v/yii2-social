@@ -64,6 +64,7 @@ class GooglePlugin extends Widget
      */
     private static $_pagePlugins = [
         self::BADGE_PERSON,
+        self::BADGE_PAGE,
         self::FOLLOW,
     ];
 
