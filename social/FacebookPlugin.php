@@ -67,6 +67,9 @@ class FacebookPlugin extends Widget
     {
         parent::init();
         $this->setConfig('facebook');
+        if (empty($this->type)) {
+            throw new InvalidConfigException("The plugin 'type' must be set.");
+        }
         if (empty($this->appId)) {
             throw new InvalidConfigException("The Facebook 'appId' has not been set.");
         }

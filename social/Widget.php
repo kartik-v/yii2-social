@@ -137,11 +137,14 @@ class Widget extends \yii\base\Widget
     /**
      * Sets the options for the  plugin
      */
-    protected function setPluginOptions()
+    protected function setPluginOptions($convertLowerCase = true)
     {
         $this->options = ['class' => $this->type];
         foreach ($this->settings as $key => $value) {
             $key = str_replace($this->dataApiPrefix, "", $key);
+            if ($convertLowerCase) {
+                $key = strtolower($key);
+            }
             $this->options[$this->dataApiPrefix . $key] = $value;
         }
     }

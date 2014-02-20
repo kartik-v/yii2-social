@@ -60,8 +60,9 @@ You can view [usage and demos](http://demos.krajee.com/social) on the module.
 
         // the global settings for the google plugins widget
         'google' => [
-            'pageId' => 'GOOGLE_PLUS_PAGE_ID',
             'clientId' => 'GOOGLE_API_CLIENT_ID',
+            'pageId' => 'GOOGLE_PLUS_PAGE_ID',
+            'profileId' => 'GOOGLE_PLUS_PROFILE_ID',
         ],
 
         // the global settings for the google analytic plugin widget

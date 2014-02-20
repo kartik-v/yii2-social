@@ -50,6 +50,11 @@ class GooglePlugin extends Widget
     public $clientId;
 
     /**
+     * @var string the Google Plus Profile ID.
+     */
+    public $profileId;
+
+    /**
      * @var string the Google Page ID.
      */
     public $pageId;
@@ -60,15 +65,6 @@ class GooglePlugin extends Widget
     public $signinOptions = [];
 
     /**
-     * @var array list of plugins that use [[pageId]]
-     */
-    private static $_pagePlugins = [
-        self::BADGE_PERSON,
-        self::BADGE_PAGE,
-        self::FOLLOW,
-    ];
-
-    /**
      * Initialize the widget
      * @throws InvalidConfigException
      */
@@ -76,12 +72,24 @@ class GooglePlugin extends Widget
     {
         parent::init();
         $this->setConfig('google');
+        if (empty($this->type)) {
+            throw new InvalidConfigException("The plugin 'type' must be set.");
+        }
+        if ($this->type === self::SIGNIN && empty($this->clientId)) {
+            throw new InvalidConfigException("The Google 'clientId' must be set for the signin button.");
+        }
+        if ($this->type === self::FOLLOW && empty($this->pageId)) {
+            throw new InvalidConfigException("The Google 'pageId' must be set for the follow button.");
+        }
+        if ($this->type === self::BADGE_PERSON && empty($this->profileId)) {
+            throw new InvalidConfigException("The Google 'profileId' must be set for the person badge.");
+        }
+        if ($this->type === self::BADGE_PAGE && empty($this->pageId)) {
+            throw new InvalidConfigException("The Google 'pageId' must be set for the page badge.");
+        }
         if (!isset($this->noscript)) {
             $this->noscript = Yii::t('social', 'Please enable JavaScript on your browser to view the Google {pluginName} plugin correctly on this site.', ['pluginName' => Yii::t('social', str_replace('ga-', '', $this->type))]
             );
-        }
-        if ($this->type === self::SIGNIN && empty($this->clientId)) {
-            throw new InvalidConfigException("The Google 'clientId' must be set for signin button.");
         }
         $this->registerAssets();
         $this->setPluginOptions();
@@ -101,10 +109,13 @@ class GooglePlugin extends Widget
         if ($this->type === self::SIGNIN) {
             $this->options["data-clientid"] = $this->clientId;
         }
-        if ($this->type === self::SHARE) {
+        elseif ($this->type === self::SHARE) {
             $this->options["data-action"] = 'share';
         }
-        if (in_array($this->type, self::$_pagePlugins)) {
+        elseif ($this->type === self::BADGE_PERSON) {
+            $this->options["data-href"] = "https://plus.google.com/{$this->profileId}";
+        }
+        elseif ($this->type === self::FOLLOW || $this->type === self::BADGE_PAGE) {
             $this->options["data-href"] = "https://plus.google.com/{$this->pageId}";
         }
     }
