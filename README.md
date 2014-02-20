@@ -16,6 +16,14 @@ Module that enables access to social plugins for Yii Framework 2.0. It includes 
   - Like Box
   - Face Pile
 - Google Plus
+  - Signin Plugin
+  - +1 Button
+  - Share Button
+  - Follow Button
+  - Page Badge
+  - Person/Profile Badge
+  - Community Badge
+  - Embedded Posts
 - Google Analytics
 
 

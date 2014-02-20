@@ -36,7 +36,7 @@ class GooglePlugin extends Widget
     const BADGE_COMMUNITY = 'g-community';
     const FOLLOW = 'g-follow';
     const HANGOUT = 'g-hangout';
-    const INTERACTIVE_POST = 'g-interactivepost';
+    const POST = 'g-post';
 
     /**
      * @var string the Google plugin type
@@ -60,6 +60,11 @@ class GooglePlugin extends Widget
     public $pageId;
 
     /**
+     * @var string the Google Plus Community ID.
+     */
+    public $communityId;
+
+    /**
      * @var array the HTML attributes for the signin container
      */
     public $signinOptions = [];
@@ -75,17 +80,20 @@ class GooglePlugin extends Widget
         if (empty($this->type)) {
             throw new InvalidConfigException("The plugin 'type' must be set.");
         }
-        if ($this->type === self::SIGNIN && empty($this->clientId)) {
+        if ($this->type === self::SIGNIN && empty($this->clientId) && empty($this->options['data-clientid'])) {
             throw new InvalidConfigException("The Google 'clientId' must be set for the signin button.");
         }
-        if ($this->type === self::FOLLOW && empty($this->pageId)) {
+        if ($this->type === self::FOLLOW && empty($this->pageId) && empty($this->options['data-href'])) {
             throw new InvalidConfigException("The Google 'pageId' must be set for the follow button.");
         }
-        if ($this->type === self::BADGE_PERSON && empty($this->profileId)) {
+        if ($this->type === self::BADGE_PAGE && empty($this->pageId) && empty($this->options['data-href'])) {
+            throw new InvalidConfigException("The Google 'pageId' must be set for the page badge.");
+        }
+        if ($this->type === self::BADGE_PERSON && empty($this->profileId) && empty($this->options['data-href'])) {
             throw new InvalidConfigException("The Google 'profileId' must be set for the person badge.");
         }
-        if ($this->type === self::BADGE_PAGE && empty($this->pageId)) {
-            throw new InvalidConfigException("The Google 'pageId' must be set for the page badge.");
+        if ($this->type === self::BADGE_COMMUNITY && empty($this->communityId) && empty($this->options['data-href'])) {
+            throw new InvalidConfigException("The Google 'communityId' must be set for the community badge.");
         }
         if (!isset($this->noscript)) {
             $this->noscript = Yii::t('social', 'Please enable JavaScript on your browser to view the Google {pluginName} plugin correctly on this site.', ['pluginName' => Yii::t('social', str_replace('ga-', '', $this->type))]
@@ -106,17 +114,23 @@ class GooglePlugin extends Widget
     protected function setPluginOptions()
     {
         parent::setPluginOptions();
-        if ($this->type === self::SIGNIN) {
+        if ($this->type === self::SIGNIN && empty($this->options["data-clientid"])) {
             $this->options["data-clientid"] = $this->clientId;
         }
-        elseif ($this->type === self::SHARE) {
+        elseif ($this->type === self::SHARE && empty($this->options["data-action"])) {
             $this->options["data-action"] = 'share';
         }
-        elseif ($this->type === self::BADGE_PERSON) {
+        elseif ($this->type === self::BADGE_PERSON && empty($this->options["data-href"])) {
             $this->options["data-href"] = "https://plus.google.com/{$this->profileId}";
         }
-        elseif ($this->type === self::FOLLOW || $this->type === self::BADGE_PAGE) {
+        elseif ($this->type === self::BADGE_COMMUNITY && empty($this->options["data-href"])) {
+            $this->options["data-href"] = "https://plus.google.com/communities/{$this->communityId}";
+        }
+        elseif (($this->type === self::FOLLOW || $this->type === self::BADGE_PAGE) && empty($this->options["data-href"])) {
             $this->options["data-href"] = "https://plus.google.com/{$this->pageId}";
+        }
+        elseif ($this->type === self::HANGOUT && empty($this->options["data-render"])) {
+            $this->options["data-render"] = 'createhangout';
         }
     }
 
@@ -128,8 +142,10 @@ class GooglePlugin extends Widget
         $view = $this->getView();
         $js = <<< SCRIPT
 (function() {
-    var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;
-    po.src = 'https://apis.google.com/js/platform.js';
+    var po = document.createElement('script');
+    po.type = 'text/javascript';
+    po.async = true;
+    po.src = 'https://apis.google.com/js/plusone.js?onload=onLoadCallback';
     var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);
   })();
 SCRIPT;
