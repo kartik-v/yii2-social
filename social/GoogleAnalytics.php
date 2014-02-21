@@ -54,6 +54,7 @@ class GoogleAnalytics extends Widget
      */
     public function init()
     {
+        $this->validPlugins = false;
         parent::init();
         $this->setConfig('googleAnalytics');
         if (empty($this->id)) {

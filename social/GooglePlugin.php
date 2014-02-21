@@ -31,10 +31,10 @@ class GooglePlugin extends Widget
     const SIGNIN = 'g-signin';
     const PLUS_ONE = 'g-plusone';
     const SHARE = 'g-plus';
+    const FOLLOW = 'g-follow';
     const BADGE_PAGE = 'g-page';
     const BADGE_PERSON = 'g-person';
     const BADGE_COMMUNITY = 'g-community';
-    const FOLLOW = 'g-follow';
     const HANGOUT = 'g-hangout';
     const POST = 'g-post';
 
@@ -75,11 +75,19 @@ class GooglePlugin extends Widget
      */
     public function init()
     {
+        $this->validPlugins = [
+            self::SIGNIN,
+            self::PLUS_ONE,
+            self::SHARE,
+            self::FOLLOW,
+            self::BADGE_PAGE,
+            self::BADGE_PERSON,
+            self::BADGE_COMMUNITY,
+            self::HANGOUT,
+            self::POST,
+        ];
         parent::init();
         $this->setConfig('google');
-        if (empty($this->type)) {
-            throw new InvalidConfigException("The plugin 'type' must be set.");
-        }
         if ($this->type === self::SIGNIN && empty($this->clientId) && empty($this->options['data-clientid'])) {
             throw new InvalidConfigException("The Google 'clientId' must be set for the signin button.");
         }

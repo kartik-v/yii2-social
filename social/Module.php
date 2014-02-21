@@ -76,6 +76,18 @@ class Module extends \yii\base\Module
     public $googleAnalytics = [];
 
     /**
+     * @var array the twitter api configuration. You can setup these keys:
+     * - screenName: string the Twitter Screen Name. This is mandatory for 
+     *   follow, mention, and hashtag buttons.
+     * - $hashTag: string the Twitter Hash Tag. 
+     * - noscript: string/boolean text to be displayed if browser does not support 
+     *   javascript. If set to false will not displayed.
+     * - noscriptOptions: array HTML attributes for the noscript message container.
+     *   Defaults to ['class' => 'alert alert-danger'].
+     */
+    public $twitter = [];
+    
+    /**
      * @var object the Facebook API object 
      */
     private $_facebook;

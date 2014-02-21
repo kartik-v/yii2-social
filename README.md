@@ -25,6 +25,12 @@ Module that enables access to social plugins for Yii Framework 2.0. It includes 
   - Community Badge
   - Embedded Posts
 - Google Analytics
+- Twitter
+  - Share Button
+  - Follow Button
+  - Hash Tag Button
+  - Mention Button
+  - Embedded Posts/Tweets
 
 
 ## Installation
@@ -78,6 +84,11 @@ You can view [usage and demos](http://demos.krajee.com/social) on the module.
             'id' => 'TRACKING_ID',
             'domain' => 'TRACKING_DOMAIN',
         ],
+        
+        // the global settings for the twitter plugins widget
+        'twitter' => [
+            'screenName' => 'TWITTER_SCREEN_NAME'
+        ],
     ],
     // your other modules
 ]
@@ -94,3 +105,6 @@ You can view [usage and demos](http://demos.krajee.com/social) on the module.
 
 ### Google Analytics
 [```VIEW DEMO```](http://demos.krajee.com/social-details/google-analytics)
+
+### Twitter
+[```VIEW DEMO```](http://demos.krajee.com/social-details/twitter)

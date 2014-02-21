@@ -45,6 +45,12 @@ class Widget extends \yii\base\Widget
      * @var array the social plugin settings
      */
     public $settings = [];
+    
+    /**
+     * @var string the content to be embedded
+     * in between the plugin tag
+     */
+    public $content = '';    
 
     /**
      * @var string text to be displayed if browser does not support javascript.
@@ -68,11 +74,22 @@ class Widget extends \yii\base\Widget
     public $moduleName = 'social';
 
     /**
+     * @var array the valid plugins
+     */
+    protected $validPlugins = [];
+    
+    /**
      * Initialize the widget
      */
     public function init()
     {
         parent::init();
+        if ($this->validPlugins !== false && empty($this->type)) {
+            throw new InvalidConfigException("The plugin 'type' must be set.");
+        }
+        if ($this->validPlugins !== false && !in_array($this->type, $this->validPlugins)) {
+            throw new InvalidConfigException("Invalid plugin type 'type'.");
+        }
         Yii::setAlias('@social', dirname(__FILE__));
         if (empty($this->i18n)) {
             $this->i18n = [
@@ -119,7 +136,7 @@ class Widget extends \yii\base\Widget
      */
     protected function renderPlugin()
     {
-        return Html::tag($this->tag, '', $this->options) . "\n" . $this->renderNoScript();
+        return Html::tag($this->tag, $this->content, $this->options) . "\n" . $this->renderNoScript();
     }
 
     /**

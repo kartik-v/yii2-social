@@ -65,6 +65,19 @@ class FacebookPlugin extends Widget
      */
     public function init()
     {
+        $this->validPlugins = [
+            self::LIKE,
+            self::SHARE,
+            self::SEND,
+            self::POST,
+            self::FOLLOW,
+            self::COMMENT,
+            self::ACTIVITY,
+            self::RECO,
+            self::RECO_BAR,
+            self::LIKE_BOX,
+            self::FACEPILE,
+        ];
         parent::init();
         $this->setConfig('facebook');
         if (empty($this->type)) {

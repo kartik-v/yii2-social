@@ -45,6 +45,7 @@ class Disqus extends Widget
      */
     public function init()
     {
+        $this->validPlugins = false;
         parent::init();
         $config = $this->setConfig('disqus');
         $this->credits = Html::a(Yii::t('social', 'comments powered by Disqus'), 'http://disqus.com/?ref_noscript');
