@@ -29,11 +29,6 @@ class Disqus extends Widget
 {
 
     /**
-     * @var string the Disqus shortname
-     */
-    public $shortname;
-
-    /**
      * @var boolean whether to display the comment count summary instead of the 
      * detailed Disqus standard comments widget
      */
@@ -55,10 +50,9 @@ class Disqus extends Widget
         $config = $this->setConfig('disqus');
         $this->credits = Html::a(Yii::t('social', 'comments powered by Disqus'), 'http://disqus.com/?ref_noscript');
         $this->noscript = Yii::t('social', 'Please enable JavaScript to view the {pluginLink}.', ['pluginLink' => $this->credits]);
-        if (empty($this->shortname)) {
-            throw new InvalidConfigException("Disqus 'shortname' has not been set.");
+        if (empty($this->settings['shortname'])) {
+            throw new InvalidConfigException("Disqus 'shortname' has not been set in settings.");
         }
-        $this->settings['shortname'] = $this->shortname;
         $variables = "";
         foreach ($this->settings as $key => $value) {
             $variables .= ($key == 'disable_mobile') ?

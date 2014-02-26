@@ -124,8 +124,13 @@ class Widget extends \yii\base\Widget
             return;
         }
         foreach ($config as $key => $value) {
-            if (property_exists(get_class($this), $key) && empty($this->$key)) {
-                $this->$key = $value;
+            if (property_exists(get_class($this), $key)) {
+                if ($key == 'settings') {
+                    $this->settings = $this->settings + $value;
+                }
+                elseif (empty($this->$key)) {
+                    $this->$key = $value;
+                }
             }
         }
     }
