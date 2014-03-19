@@ -18,19 +18,19 @@
  * NOTE: this file must be saved in UTF-8 encoding.
  */
 return array(
-    'You must enable Javascript on your browser for the site to work optimally and display sections completely.' => '',
-    'Please enable JavaScript to view the {pluginLink}' => '',
-    'comments powered by Disqus' => '',
-    'Please enable JavaScript on your browser to view the Facebook {pluginName} plugin correctly on this site.' => '',
-    'like' => '',
-    'share-button' => '',
-    'send' => '',
-    'post' => '',
-    'follow' => '',
-    'comments' => '',
-    'activity' => '',
-    'recommendations' => '',
-    'recommendations-bar' => '',
-    'like-box' => '',
-    'facepile' => ''
+	'You must enable Javascript on your browser for the site to work optimally and display sections completely.' => '',
+	'Please enable JavaScript to view the {pluginLink}' => '',
+	'comments powered by Disqus' => '',
+	'Please enable JavaScript on your browser to view the Facebook {pluginName} plugin correctly on this site.' => '',
+	'like' => '',
+	'share-button' => '',
+	'send' => '',
+	'post' => '',
+	'follow' => '',
+	'comments' => '',
+	'activity' => '',
+	'recommendations' => '',
+	'recommendations-bar' => '',
+	'like-box' => '',
+	'facepile' => ''
 );

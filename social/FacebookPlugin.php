@@ -14,7 +14,7 @@ use yii\helpers\Html;
 
 /**
  * Widget to render various Facebook plugins
- * 
+ *
  * Usage:
  * ```
  * echo FacebookPlugin::widget([
@@ -23,85 +23,86 @@ use yii\helpers\Html;
  *     'settings' => ['colorscheme' => 'dark']
  * ]);
  * ```
- * 
+ *
  * @author Kartik Visweswaran <kartikv2@gmail.com>
  * @since 1.0
  */
 class FacebookPlugin extends Widget
 {
 
-    const LIKE = 'fb-like';
-    const SHARE = 'fb-share-button';
-    const SEND = 'fb-send';
-    const POST = 'fb-post';
-    const FOLLOW = 'fb-follow';
-    const COMMENT = 'fb-comments';
-    const ACTIVITY = 'fb-activity';
-    const RECO = 'fb-recommendations';
-    const RECO_BAR = 'fb-recommendations-bar';
-    const LIKE_BOX = 'fb-like-box';
-    const FACEPILE = 'fb-facepile';
+	const LIKE = 'fb-like';
+	const SHARE = 'fb-share-button';
+	const SEND = 'fb-send';
+	const POST = 'fb-post';
+	const FOLLOW = 'fb-follow';
+	const COMMENT = 'fb-comments';
+	const ACTIVITY = 'fb-activity';
+	const RECO = 'fb-recommendations';
+	const RECO_BAR = 'fb-recommendations-bar';
+	const LIKE_BOX = 'fb-like-box';
+	const FACEPILE = 'fb-facepile';
 
-    /**
-     * @var string the Facebook Application ID. 
-     * This is mandatory.
-     */
-    public $appId;
+	/**
+	 * @var string the Facebook Application ID.
+	 * This is mandatory.
+	 */
+	public $appId;
 
-    /**
-     * @var string the Facebook plugin type
-     * defaults to Facebook Comments
-     */
-    public $type = self::COMMENT;
+	/**
+	 * @var string the Facebook plugin type
+	 * defaults to Facebook Comments
+	 */
+	public $type = self::COMMENT;
 
-    /**
-     * @var array the Facebook plugin settings
-     */
-    public $settings = [];
+	/**
+	 * @var array the Facebook plugin settings
+	 */
+	public $settings = [];
 
-    /**
-     * Initialize the widget
-     * @throws InvalidConfigException
-     */
-    public function init()
-    {
-        $this->validPlugins = [
-            self::LIKE,
-            self::SHARE,
-            self::SEND,
-            self::POST,
-            self::FOLLOW,
-            self::COMMENT,
-            self::ACTIVITY,
-            self::RECO,
-            self::RECO_BAR,
-            self::LIKE_BOX,
-            self::FACEPILE,
-        ];
-        parent::init();
-        $this->setConfig('facebook');
-        if (empty($this->type)) {
-            throw new InvalidConfigException("The plugin 'type' must be set.");
-        }
-        if (empty($this->appId)) {
-            throw new InvalidConfigException("The Facebook 'appId' has not been set.");
-        }
-        if (!isset($this->noscript)) {
-            $this->noscript = Yii::t('social', 'Please enable JavaScript on your browser to view the Facebook {pluginName} plugin correctly on this site.', ['pluginName' => Yii::t('social', str_replace('fb-', '', $this->type))]
-            );
-        }
-        $this->registerAssets();
-        $this->setPluginOptions();
-        echo "<div id='fb-root'></div>\n" . $this->renderPlugin();
-    }
+	/**
+	 * Initialize the widget
+	 *
+	 * @throws InvalidConfigException
+	 */
+	public function init()
+	{
+		$this->validPlugins = [
+			self::LIKE,
+			self::SHARE,
+			self::SEND,
+			self::POST,
+			self::FOLLOW,
+			self::COMMENT,
+			self::ACTIVITY,
+			self::RECO,
+			self::RECO_BAR,
+			self::LIKE_BOX,
+			self::FACEPILE,
+		];
+		parent::init();
+		$this->setConfig('facebook');
+		if (empty($this->type)) {
+			throw new InvalidConfigException("The plugin 'type' must be set.");
+		}
+		if (empty($this->appId)) {
+			throw new InvalidConfigException("The Facebook 'appId' has not been set.");
+		}
+		if (!isset($this->noscript)) {
+			$this->noscript = Yii::t('social', 'Please enable JavaScript on your browser to view the Facebook {pluginName} plugin correctly on this site.', ['pluginName' => Yii::t('social', str_replace('fb-', '', $this->type))]
+			);
+		}
+		$this->registerAssets();
+		$this->setPluginOptions();
+		echo "<div id='fb-root'></div>\n" . $this->renderPlugin();
+	}
 
-    /**
-     * Registers the necessary assets
-     */
-    protected function registerAssets()
-    {
-        $view = $this->getView();
-        $js = <<< SCRIPT
+	/**
+	 * Registers the necessary assets
+	 */
+	protected function registerAssets()
+	{
+		$view = $this->getView();
+		$js = <<< SCRIPT
 (function(d, s, id) {
     var js, fjs = d.getElementsByTagName(s)[0];
     if (d.getElementById(id))
@@ -112,7 +113,7 @@ class FacebookPlugin extends Widget
     fjs.parentNode.insertBefore(js, fjs);
 }(document, 'script', 'facebook-jssdk'));                
 SCRIPT;
-        $view->registerJs($js);
-    }
+		$view->registerJs($js);
+	}
 
 }
