@@ -88,6 +88,18 @@ class Module extends \yii\base\Module
 	public $twitter = [];
 
 	/**
+	 * @var array the github buttons api configuration. You can setup these keys:
+	 * - type: string the Twitter Screen Name. This is mandatory for
+	 *   follow, mention, and hashtag buttons.
+	 * - settings: array the configuration for the GitHub buttons widget
+	 * - options: array the HTML attributes for the GitHub buttons iframe container.
+	 * - noscript: string/boolean text to be displayed if browser does not support
+	 *   javascript. If set to false will not displayed.
+	 * - noscriptOptions: array HTML attributes for the noscript message container.
+	 *   Defaults to ['class' => 'alert alert-danger'].
+	 */
+	public $github = [];
+	/**
 	 * @var object the Facebook API object
 	 */
 	private $_facebook;
