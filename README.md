@@ -31,7 +31,10 @@ Module that enables access to social plugins for Yii Framework 2.0. It includes 
   - Hash Tag Button
   - Mention Button
   - Embedded Posts/Tweets
-
+- GitHub
+  - Watch Button
+  - Fork Button
+  - Follow Button
 
 ## Installation
 
@@ -108,3 +111,10 @@ You can view [usage and demos](http://demos.krajee.com/social) on the module.
 
 ### Twitter
 [```VIEW DEMO```](http://demos.krajee.com/social-details/twitter)
+
+### GitHub
+[```VIEW DEMO```](http://demos.krajee.com/social-details/github)
+
+## License
+
+**yii2-social** is released under the BSD 3-Clause License. See the bundled `LICENSE.md` for details.
