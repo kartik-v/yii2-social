@@ -125,10 +125,10 @@ class Module extends \yii\base\Module
 			throw new InvalidConfigException("The Facebook 'secret' has not been set.");
 		}
 		if (!isset($this->_facebook)) {
-			$path = Yii::getPathAlias('@vendor/facebook/php-sdk/src/facebook.php');
+			$path = \Yii::getAlias('@vendor/facebook/php-sdk/src/facebook.php');
 			require_once($path);
 			$config = compact('appId', 'secret', 'fileUpload', 'allowSignedRequest');
-			$this->_facebook = new Facebook($config);
+			$this->_facebook = new \Facebook($config);
 		}
 		return $this->_facebook;
 	}
