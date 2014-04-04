@@ -28,50 +28,50 @@ use yii\helpers\Html;
 class GoogleAnalytics extends Widget
 {
 
-	/**
-	 * @var string the Google Analytics Tracking ID
-	 */
-	public $id;
+    /**
+     * @var string the Google Analytics Tracking ID
+     */
+    public $id;
 
-	/**
-	 * @var string the domain name of your website where the tracking code will be displayed
-	 */
-	public $domain;
+    /**
+     * @var string the domain name of your website where the tracking code will be displayed
+     */
+    public $domain;
 
-	/**
-	 * @var boolean whether to insert the new version of the google analytics tracking code
-	 */
-	public $newVersion = true;
+    /**
+     * @var boolean whether to insert the new version of the google analytics tracking code
+     */
+    public $newVersion = true;
 
-	/**
-	 * @var boolean whether to insert the older version of the google analytics tracking code
-	 */
-	public $oldVersion = false;
+    /**
+     * @var boolean whether to insert the older version of the google analytics tracking code
+     */
+    public $oldVersion = false;
 
-	/**
-	 * Initialize the widget
-	 *
-	 * @throws InvalidConfigException
-	 */
-	public function init()
-	{
-		$this->validPlugins = false;
-		parent::init();
-		$this->setConfig('googleAnalytics');
-		if (empty($this->id)) {
-			throw new InvalidConfigException("Google analytics tracking 'id' has not been set.");
-		}
-		if (empty($this->domain)) {
-			throw new InvalidConfigException("Google analytics tracking 'domain' has not been set.");
-		}
-		$params = [
-			'id' => $this->id,
-			'domain' => $this->domain,
-			'newVersion' => $this->newVersion,
-			'oldVersion' => $this->oldVersion,
-			'noscript' => $this->renderNoScript()
-		];
-		echo $this->render('google-analytics', $params);
-	}
+    /**
+     * Initialize the widget
+     *
+     * @throws InvalidConfigException
+     */
+    public function init()
+    {
+        $this->validPlugins = false;
+        parent::init();
+        $this->setConfig('googleAnalytics');
+        if (empty($this->id)) {
+            throw new InvalidConfigException("Google analytics tracking 'id' has not been set.");
+        }
+        if (empty($this->domain)) {
+            throw new InvalidConfigException("Google analytics tracking 'domain' has not been set.");
+        }
+        $params = [
+            'id' => $this->id,
+            'domain' => $this->domain,
+            'newVersion' => $this->newVersion,
+            'oldVersion' => $this->oldVersion,
+            'noscript' => $this->renderNoScript()
+        ];
+        echo $this->render('google-analytics', $params);
+    }
 
 }
