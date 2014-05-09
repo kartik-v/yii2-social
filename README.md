@@ -36,6 +36,12 @@ Module that enables access to social plugins for Yii Framework 2.0. It includes 
   - Fork Button
   - Follow Button
 
+> NOTE: This extension depends on the [yiisoft/yii2](https://github.com/yiisoft/yii2/) package. Check the 
+[composer.json](https://github.com/kartik-v/yii2-widgets/blob/master/composer.json) for this extension's requirements and dependencies. 
+Note: Yii 2 framework is still in active development, and until a fully stable Yii2 release, your core yii2 packages (and its dependencies) 
+may be updated when you install or update this extension. You may need to lock your composer package versions for your specific app, and test 
+for extension break if you do not wish to auto update dependencies.
+  
 ## Installation
 
 The preferred way to install this extension is through [composer](http://getcomposer.org/download/).
