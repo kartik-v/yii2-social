@@ -120,7 +120,7 @@ class GooglePlugin extends Widget
     /**
      * Sets the options for the Google plugin
      */
-    protected function setPluginOptions()
+    protected function setPluginOptions($convertLowerCase = true)
     {
         parent::setPluginOptions();
         if ($this->type === self::SIGNIN && empty($this->options["data-clientid"])) {

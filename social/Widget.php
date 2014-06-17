@@ -161,6 +161,8 @@ class Widget extends \yii\base\Widget
 
     /**
      * Sets the options for the  plugin
+     *
+     * @param bool $convertLowerCase
      */
     protected function setPluginOptions($convertLowerCase = true)
     {
