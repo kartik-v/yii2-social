@@ -37,7 +37,7 @@ class Disqus extends Widget
     /**
      * @var string text for Disqus credits to be displayed at the end of the widget
      */
-    public $credits;
+    public $credits = null;
 
     /**
      * Initialize the widget
@@ -49,8 +49,8 @@ class Disqus extends Widget
         $this->validPlugins = false;
         parent::init();
         $config = $this->setConfig('disqus');
-        if ($this->credits === null) {
-            $credits = Html::a(Yii::t('social', 'comments powered by Disqus'), 'http://disqus.com/?ref_noscript');
+        if ($this->credits !== null) {
+            $this->credits = Html::a(Yii::t('social', 'comments powered by Disqus'), 'http://disqus.com/?ref_noscript');
         }
         $this->noscript = Yii::t('social', 'Please enable JavaScript to view the {pluginLink}.', ['pluginLink' => $this->credits]);
         if (empty($this->settings['shortname'])) {
