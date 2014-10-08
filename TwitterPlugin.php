@@ -1,9 +1,9 @@
 <?php
 
 /**
- * @copyright Copyright &copy; Kartik Visweswaran, Krajee.com, 2013
+ * @copyright Copyright &copy; Kartik Visweswaran, Krajee.com, 2014
  * @package yii2-social
- * @version 1.0.0
+ * @version 1.1.0
  */
 
 namespace kartik\social;
@@ -76,6 +76,7 @@ class TwitterPlugin extends Widget
         parent::init();
         $this->tag = ($this->type === self::TWEET) ? 'blockquote' : 'a';
         $this->setConfig('twitter');
+        $this->settings['lang'] = $this->language;
         if ($this->type === self::HASHTAG && empty($this->hashTag) && empty($this->options['data-href'])) {
             throw new InvalidConfigException("The Twitter 'hashTag' must be set for displaying the 'hashtag' button.");
         }

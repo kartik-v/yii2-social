@@ -1,9 +1,9 @@
 <?php
 
 /**
- * @copyright Copyright &copy; Kartik Visweswaran, Krajee.com, 2013
+ * @copyright Copyright &copy; Kartik Visweswaran, Krajee.com, 2014
  * @package yii2-social
- * @version 1.0.0
+ * @version 1.1.0
  */
 
 namespace kartik\social;
@@ -109,7 +109,7 @@ class FacebookPlugin extends Widget
         return;
     js = d.createElement(s);
     js.id = id;
-    js.src = "//connect.facebook.net/en_US/all.js#xfbml=1&appId={$this->appId}";
+    js.src = "//connect.facebook.net/{$this->language}/all.js#xfbml=1&appId={$this->appId}";
     fjs.parentNode.insertBefore(js, fjs);
 }(document, 'script', 'facebook-jssdk'));                
 SCRIPT;

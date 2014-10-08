@@ -1,9 +1,9 @@
 <?php
 
 /**
- * @copyright Copyright &copy; Kartik Visweswaran, Krajee.com, 2013
+ * @copyright Copyright &copy; Kartik Visweswaran, Krajee.com, 2014
  * @package yii2-social
- * @version 1.0.0
+ * @version 1.1.0
  */
 
 namespace kartik\social;
@@ -11,6 +11,8 @@ namespace kartik\social;
 use Yii;
 use yii\base\InvalidConfigException;
 use yii\helpers\Html;
+use yii\helpers\Json;
+use yii\web\View;
 
 /**
  * Widget to render various Google plugins
@@ -144,16 +146,12 @@ class GooglePlugin extends Widget
     protected function registerAssets()
     {
         $view = $this->getView();
-        $js = <<< SCRIPT
-(function() {
-    var po = document.createElement('script');
-    po.type = 'text/javascript';
-    po.async = true;
-    po.src = 'https://apis.google.com/js/plusone.js?onload=onLoadCallback';
-    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);
-  })();
-SCRIPT;
-        $view->registerJs($js);
+        $view->registerJsFile('https://apis.google.com/js/platform.js', [
+            'position'=>View::POS_HEAD, 
+            'async'=>true, 
+            'defer'=>true
+        ]);
+        $view->registerJs("\nwindow.___gcfg={lang:'{$this->language}'};\n", View::POS_HEAD);
     }
 
 }

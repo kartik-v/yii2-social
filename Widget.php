@@ -1,9 +1,9 @@
 <?php
 
 /**
- * @copyright Copyright &copy; Kartik Visweswaran, Krajee.com, 2013
+ * @copyright Copyright &copy; Kartik Visweswaran, Krajee.com, 2014
  * @package yii2-social
- * @version 1.0.0
+ * @version 1.1.0
  */
 
 namespace kartik\social;
@@ -20,6 +20,17 @@ use yii\helpers\Html;
  */
 class Widget extends \yii\base\Widget
 {
+    private static $defaultLanguage = [
+        'facebook' => 'en_US',
+        'twitter' => 'en',
+        'google' => 'en-US'
+    ];
+    
+    /**
+     * @var string the language used in displaying content. 
+     * If not provided, defaults to `en_US`.
+     */
+    public $language;
 
     /**
      * @var string the tag for enclosing the plugin. Defaults to 'div'.
@@ -133,6 +144,9 @@ class Widget extends \yii\base\Widget
                     $this->$key = $value;
                 }
             }
+        }
+        if (empty($this->language) && isset(self::$defaultLanguage[$widget])) {
+            $this->language = self::$defaultLanguage[$widget];
         }
     }
 
