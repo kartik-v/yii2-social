@@ -1,9 +1,9 @@
 <?php
 
 /**
- * @copyright Copyright &copy; Kartik Visweswaran, Krajee.com, 2013
+ * @copyright Copyright &copy; Kartik Visweswaran, Krajee.com, 2014
  * @package yii2-markdown
- * @version 1.0.0
+ * @version 1.2.0
  */
 
 namespace kartik\social;
