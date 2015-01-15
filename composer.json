@@ -14,7 +14,7 @@
     ],
     "minimum-stability": "stable",
     "require": {
-        "facebook/php-sdk-v4": "@dev"
+        "facebook/php-sdk-v4": "*"
     },
     "autoload": {
         "psr-4": {
