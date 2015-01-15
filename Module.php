@@ -121,10 +121,10 @@ class Module extends \yii\base\Module
      *
      * @param array $params should be set as $key=>$value,
      * where $key is one of:
-     * - 'appId': string, the facebook application id (if not set, this will default 
-     *            from module facebook settings) 
-     * - 'secret': string, the facebook application secret (if not set, this will default 
-     *             from module facebook settings)
+     * - 'appId': string, the facebook application id (if not set, this  
+     *    will default from module facebook settings) 
+     * - 'secret': string, the facebook application secret (if not set, this 
+     *    will default from module facebook settings)
      *
      * @return void
      *
@@ -182,6 +182,13 @@ class Module extends \yii\base\Module
     /**
      * Gets the Yii modified redirect login helper
      *
+     * @param string $url the url to redirect to
+     * @param array $paramss hould be set as $key=>$value,
+     * where $key is one of:
+     * - 'appId': string, the facebook application id (if not set, this
+     *    will default from module facebook settings) 
+     * - 'secret': string, the facebook application secret (if not set, this 
+     *    will default from module facebook settings)
      * @return FacebookRedirectLoginHelperX
      */
     public function getFbLoginHelper($url = '', $params = []) {
