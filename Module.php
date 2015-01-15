@@ -2,11 +2,21 @@
 
 /**
  * @copyright Copyright &copy; Kartik Visweswaran, Krajee.com, 2014
- * @package yii2-markdown
- * @version 1.2.0
+ * @package yii2-social
+ * @version 1.3.0
  */
 
 namespace kartik\social;
+
+use Yii;
+use yii\helpers\ArrayHelper;
+use Facebook\FacebookSession;
+use Facebook\FacebookRedirectLoginHelper;
+use Facebook\FacebookCanvasLoginHelper;
+use Facebook\FacebookJavaScriptLoginHelper;
+use Facebook\FacebookRequest;
+use Facebook\GraphUser;
+use Facebook\FacebookRequestException;
 
 /**
  * Module for configuring all social widgets
@@ -42,10 +52,6 @@ class Module extends \yii\base\Module
      * @var array the facebook api configuration. You can setup these keys:
      * - appId: string the Facebook Application ID. This is mandatory.
      * - secret: string the Facebook Application Secret. This is mandatory.
-     * - fileUpload: boolean whether or not file uploads are enabled on your server.
-     * - allowSignedRequest: boolean whether or not to use signed_request data from query
-     *   parameters or the POST body. For security purposes, this should be set
-     *   to false for non-canvas apps. This is optional.
      * - noscript: string/boolean text to be displayed if browser does not support
      *   javascript. If set to false will not displayed.
      * - noscriptOptions: array HTML attributes for the noscript message container.
@@ -99,49 +105,103 @@ class Module extends \yii\base\Module
      *   Defaults to ['class' => 'alert alert-danger'].
      */
     public $github = [];
-    /**
-     * @var object the Facebook API object
-     */
-    private $_facebook;
 
     /**
-     * Returns the Facebook SDK API object
+     * @var FacebookSession the Facebook session object
+     */
+    private $_fbSession;
+
+    /**
+     * @var GraphUser the Facebook graph object for current user
+     */
+    private $_fbGraphUser; 
+    
+    /**
+     * Returns the Facebook Session object
+     *
+     * @param array $params should be set as $key=>$value,
+     * where $key is one of:
+     * - 'appId': string, the facebook application id (if not set, this will default 
+     *            from module facebook settings) 
+     * - 'secret': string, the facebook application secret (if not set, this will default 
+     *             from module facebook settings)
+     *
+     * @return void
      *
      * @throws InvalidConfigException
      */
-    public function getFbApi()
+    public function initFbSession($params = [])
     {
+        $params += $this->facebook;
         $appId = null;
         $secret = null;
-        $fileUpload = false;
-        $allowSignedRequest = false;
-
-        extract($this->facebook);
-
-        if ($appId == null) {
+        extract($params);
+        if (empty($appId)) {
             throw new InvalidConfigException("The Facebook 'appId' has not been set.");
         }
-        if ($secret == null) {
+        if (empty($secret)) {
             throw new InvalidConfigException("The Facebook 'secret' has not been set.");
         }
-        if (!isset($this->_facebook)) {
-            $path = \Yii::getAlias('@vendor/facebook/php-sdk/src/facebook.php');
-            require_once($path);
-            $config = compact('appId', 'secret', 'fileUpload', 'allowSignedRequest');
-            $this->_facebook = new \Facebook($config);
-        }
-        return $this->_facebook;
+        FacebookSession::setDefaultApplication($appId, $secret);
     }
-
+    
     /**
-     * Returns the Facebook User ID
+     * Returns the Facebook Session object.
      *
-     * @return string
+     * @param string source string|FacebookRedirectLoginHelper|FacebookCanvasLoginHelper|FacebookJavaScriptLoginHelper 
+     *    the token or the helper instance. If its provided as a string, then it will be assumed to be a
+     *    valid access token based on which session will be returned. Else, it will be derived from one of the helper
+     *    objects provided.
+     *
+     * @return FacebookSession
+     *
+     * @throws InvalidConfigException
      */
-    public function getFbUser()
+    public function getFbSession($params)
     {
-        $facebook = $this->getFbApi();
-        return $facebook->getUser();
+        if (isset($this->_fbSession)) {
+            return $this->_fbSession;
+        }
+        $source = ArrayHelper::remove($params, 'source', '');
+        if (
+            empty($source) || !is_string($source) || 
+            !($source instanceof FacebookRedirectLoginHelper) || 
+            !($source instanceof FacebookCanvasLoginHelper) || 
+            !($source instanceof FacebookJavaScriptLoginHelper)
+        ) {
+            return null;
+        }
+        if (is_string($source)) {
+            $this->_fbSession = new FacebookSession($source);            
+        } else {
+            $this->_fbSession = $source->getSession();
+        }
+        return $this->_fbSession;
+    }
+    
+    /**
+     * Gets the Yii modified redirect login helper
+     *
+     * @return FacebookRedirectLoginHelperX
+     */
+    public function getFbLoginHelper($url = '', $params = []) {
+        $params += $this->facebook;
+        extract($params);
+        return new FacebookRedirectLoginHelperX($url, $appId, $secret);
+    }
+    
+    /**
+     * Returns the Facebook graph user object for current user
+     *
+     * @param FacebookSession $session the Facebook session instance
+     *
+     * @return GraphUser
+     */
+    public function getFbGraphUser($session)
+    {
+        return (new FacebookRequest(
+            $session, 'GET', '/me'
+        ))->execute()->getGraphObject(GraphUser::className());
     }
 
 }

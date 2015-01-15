@@ -12,9 +12,9 @@
             "homepage": "http://www.krajee.com/"
         }
     ],
-    "minimum-stability": "dev",
+    "minimum-stability": "stable",
     "require": {
-        "facebook/php-sdk": "*"
+        "facebook/php-sdk-v4": "@dev"
     },
     "autoload": {
         "psr-4": {
