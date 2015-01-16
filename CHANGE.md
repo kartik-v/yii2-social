@@ -1,6 +1,6 @@
 version 1.3.0
 =============
-**Date:** 15-Jan-2015
+**Date:** 16-Jan-2015
 
 - (enh #6): Remove Facebook PHP SDK support (old version v3.0). 
 - (enh #10): German translations added
@@ -16,6 +16,16 @@ version 1.3.0
         - Method `getFbApi`has been removed from the social module
         - Module `getFbUser` has been removed from the social module
         - Set release to stable.
+- (enh #14): Add new configuration for GoogleAnalytics `anonymizeIp`.
+- (enh #15): Various enhancements and additional configuration settings for the `GoogleAnalytics` widget:
+    - Remove support for old version (widget only supports the new Google Universal Analytics plugin)
+    - New `testMode` property that defaults to `YII_DEBUG` definition to allow google analytics to work from localhost.
+    - Ability to configure tracking object name. Defaults to `__gaTracker`.
+    - Ability to configure `trackerConfig` settings for creation of the ga object.
+    - Ability to configure `sendConfig` settings for sending of the ga data.
+    - Ability to configure `anonymizeIp` property.
+    - Ability to add additional javascript **before** sending the ga data. 
+    - Ability to add additional javascript **after** sending the ga data.
 
 version 1.2.0
 =============

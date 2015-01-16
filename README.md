@@ -36,8 +36,6 @@ Module that enables access to social plugins for Yii Framework 2.0. It includes 
   - Fork Button
   - Follow Button
   
-> NOTE: Facebook PHP SDK v4.0 support is included since release v1.3.0 of the module. In case you have issues with Facebook PHP not being installed properly by composer, you would need to check your composer install logs or check to see if you have the right version. You may otherwise face issues of Facebook classes not found by the extension. In this situation, you may need to refresh your packages correctly (or overwrite the `vendor/facebook/php-sdk-4` folder with the downloaded facebook zip or tarball from [the github repo](https://github.com/facebook/facebook-php-sdk-v4/)).
-
 ## Installation
 
 The preferred way to install this extension is through [composer](http://getcomposer.org/download/).

@@ -157,11 +157,12 @@ class Module extends \yii\base\Module
      *
      * @throws InvalidConfigException
      */
-    public function getFbSession($source)
+    public function getFbSession($params)
     {
         if (isset($this->_fbSession)) {
             return $this->_fbSession;
         }
+        $source = ArrayHelper::remove($params, 'source', '');
         if (
             empty($source) || !is_string($source) || 
             !($source instanceof FacebookRedirectLoginHelper) || 
@@ -181,8 +182,8 @@ class Module extends \yii\base\Module
     /**
      * Gets the Yii modified redirect login helper
      *
-     * @param string $url the absolute url to redirect to
-     * @param array $params  should be set as $key=>$value,
+     * @param string $url the url to redirect to
+     * @param array $paramss hould be set as $key=>$value,
      * where $key is one of:
      * - 'appId': string, the facebook application id (if not set, this
      *    will default from module facebook settings) 
