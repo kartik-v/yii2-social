@@ -33,6 +33,7 @@ Module that enables access to social plugins for Yii Framework 2.0. It includes 
   - Embedded Posts/Tweets
 - GitHub
   - Watch Button
+  - Star Button
   - Fork Button
   - Follow Button
   

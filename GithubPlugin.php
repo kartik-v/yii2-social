@@ -34,6 +34,7 @@ class GithubPlugin extends Widget
 {
 
     const WATCH = 'watch';
+    const STAR = 'star';
     const FORK = 'fork';
     const FOLLOW = 'follow';
     const API = 'http://ghbtns.com/github-btn.html';
@@ -62,6 +63,7 @@ class GithubPlugin extends Widget
      */
     protected $validPlugins = [
         self::WATCH,
+        self::STAR,
         self::FORK,
         self::FOLLOW
     ];
@@ -94,6 +96,7 @@ class GithubPlugin extends Widget
         } else {
             unset($this->settings['count']);
         }
+        $this->settings['v'] = 2;
         $large = (!empty($this->settings['size']) && $this->settings['size'] == 'large');
         $defaultOptions = ['allowtransparency' => "true", 'frameborder' => 0, 'scrolling' => 0] +
             ($large ? ['width' => 170, 'height' => 30] : ['width' => 110, 'height' => 20]);

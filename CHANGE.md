@@ -1,6 +1,6 @@
 version 1.3.0
 =============
-**Date:** 16-Jan-2015
+**Date:** 04-Feb-2015
 
 - (enh #6): Remove Facebook PHP SDK support (old version v3.0). 
 - (enh #10): German translations added
@@ -26,6 +26,7 @@ version 1.3.0
     - Ability to configure `anonymizeIp` property.
     - Ability to add additional javascript **before** sending the ga data. 
     - Ability to add additional javascript **after** sending the ga data.
+- (enh #18): Separate Github star and watch buttons as per v2.0.
 
 version 1.2.0
 =============
