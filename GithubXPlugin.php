@@ -185,13 +185,13 @@ class GithubXPlugin extends Widget
                 ];
             case self::DOWNLOAD:
                 return [
-                    "href" => "https://github.com/{$this->user}",
+                    "href" => $href . "/archive/master.zip",
                     "data-icon" => "octicon-cloud-download",
                     "label" => Yii::t('kvsocial', 'Download')
                 ];
             case self::FOLLOW:
                 return [
-                    "href" => $href . "/archive/master.zip",
+                    "href" => "https://github.com/{$this->user}",
                     "data-icon" => "octicon-mark-github",
                     "data-count-api" => "/users/{$this->user}#followers",
                     "data-count-href" => "/{$this->user}/followers",
