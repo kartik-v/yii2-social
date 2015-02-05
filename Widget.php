@@ -101,16 +101,16 @@ class Widget extends \yii\base\Widget
         if ($this->validPlugins !== false && !in_array($this->type, $this->validPlugins)) {
             throw new InvalidConfigException("Invalid plugin type 'type'.");
         }
-        Yii::setAlias('@social', dirname(__FILE__));
+        Yii::setAlias('@kvsocial', dirname(__FILE__));
         if (empty($this->i18n)) {
             $this->i18n = [
                 'class' => 'yii\i18n\PhpMessageSource',
-                'basePath' => '@social/messages',
+                'basePath' => '@kvsocial/messages',
                 'forceTranslation' => true
             ];
         }
-        Yii::$app->i18n->translations['social'] = $this->i18n;
-        $this->noscript = Yii::t('social', 'You must enable Javascript on your browser for the site to work optimally and display sections completely.');
+        Yii::$app->i18n->translations['kvsocial'] = $this->i18n;
+        $this->noscript = Yii::t('kvsocial', 'You must enable Javascript on your browser for the site to work optimally and display sections completely.');
     }
 
     /**

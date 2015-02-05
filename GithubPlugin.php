@@ -88,7 +88,7 @@ class GithubPlugin extends Widget
             throw new InvalidConfigException("The GitHub button 'type' has not been set.");
         }
         if (!isset($this->noscript)) {
-            $this->noscript = Yii::t('social', 'Please enable JavaScript on your browser to view the Facebook {pluginName} plugin correctly on this site.', ['pluginName' => Yii::t('social', str_replace('fb-', '', $this->type))]
+            $this->noscript = Yii::t('kvsocial', 'Please enable JavaScript on your browser to view the Facebook {pluginName} plugin correctly on this site.', ['pluginName' => Yii::t('kvsocial', str_replace('fb-', '', $this->type))]
             );
         }
         if (!empty($this->settings['count']) && ($this->settings['count'] || $this->settings['count'] == 'true')) {

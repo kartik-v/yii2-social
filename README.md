@@ -36,6 +36,13 @@ Module that enables access to social plugins for Yii Framework 2.0. It includes 
   - Star Button
   - Fork Button
   - Follow Button
+- GitHubX
+  - Watch Button
+  - Star Button
+  - Fork Button
+  - Issue Button
+  - Download Button
+  - Follow Button
   
 ## Installation
 

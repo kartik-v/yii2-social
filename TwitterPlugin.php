@@ -87,7 +87,7 @@ class TwitterPlugin extends Widget
             throw new InvalidConfigException("The Twitter 'content' must be set for displaying 'embedded tweets'.");
         }
         if (!isset($this->noscript)) {
-            $this->noscript = Yii::t('social', 'Please enable JavaScript on your browser to view the Twitter {pluginName} plugin correctly on this site.', ['pluginName' => Yii::t('social', str_replace('twitter-', '', $this->type))]
+            $this->noscript = Yii::t('kvsocial', 'Please enable JavaScript on your browser to view the Twitter {pluginName} plugin correctly on this site.', ['pluginName' => Yii::t('kvsocial', str_replace('twitter-', '', $this->type))]
             );
         }
         $this->registerAssets();

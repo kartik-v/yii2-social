@@ -50,9 +50,9 @@ class Disqus extends Widget
         parent::init();
         $config = $this->setConfig('disqus');
         if ($this->credits === null) {
-            $this->credits = Html::a(Yii::t('social', 'comments powered by Disqus'), 'http://disqus.com/?ref_noscript');
+            $this->credits = Html::a(Yii::t('kvsocial', 'comments powered by Disqus'), 'http://disqus.com/?ref_noscript');
         }
-        $this->noscript = Yii::t('social', 'Please enable JavaScript to view the {pluginLink}.', ['pluginLink' => $this->credits]);
+        $this->noscript = Yii::t('kvsocial', 'Please enable JavaScript to view the {pluginLink}.', ['pluginLink' => $this->credits]);
         if (empty($this->settings['shortname'])) {
             throw new InvalidConfigException("Disqus 'shortname' has not been set in settings.");
         }

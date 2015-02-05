@@ -107,7 +107,7 @@ class GooglePlugin extends Widget
             throw new InvalidConfigException("The Google 'communityId' must be set for the community badge.");
         }
         if (!isset($this->noscript)) {
-            $this->noscript = Yii::t('social', 'Please enable JavaScript on your browser to view the Google {pluginName} plugin correctly on this site.', ['pluginName' => Yii::t('social', str_replace('ga-', '', $this->type))]
+            $this->noscript = Yii::t('kvsocial', 'Please enable JavaScript on your browser to view the Google {pluginName} plugin correctly on this site.', ['pluginName' => Yii::t('kvsocial', str_replace('ga-', '', $this->type))]
             );
         }
         $this->registerAssets();
@@ -147,9 +147,9 @@ class GooglePlugin extends Widget
     {
         $view = $this->getView();
         $view->registerJsFile('https://apis.google.com/js/platform.js', [
-            'position'=>View::POS_HEAD, 
-            'async'=>true, 
-            'defer'=>true
+            'position' => View::POS_HEAD, 
+            'async' => true, 
+            'defer' => true
         ]);
         $view->registerJs("\nwindow.___gcfg={lang:'{$this->language}'};\n", View::POS_HEAD);
     }

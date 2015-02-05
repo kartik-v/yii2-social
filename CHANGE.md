@@ -27,6 +27,7 @@ version 1.3.0
     - Ability to add additional javascript **before** sending the ga data. 
     - Ability to add additional javascript **after** sending the ga data.
 - (enh #18): Separate Github star and watch buttons as per v2.0.
+- (enh #19): Implement GithubXPlugin based on [github buttons](https://github.com/ntkme/github-buttons).
 
 version 1.2.0
 =============
