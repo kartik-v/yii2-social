@@ -11,6 +11,7 @@ namespace kartik\social;
 use Yii;
 use yii\base\InvalidConfigException;
 use yii\helpers\Html;
+use kartik\base\Config;
 
 /**
  * Base widget for all social widgets
@@ -121,7 +122,7 @@ class Widget extends \yii\base\Widget
      */
     public function getConfig($widget)
     {
-        $module = Yii::$app->getModule($this->moduleName);
+        $module = Config::fetchModule($this->moduleName);
         return isset($module->$widget) ? $module->$widget : [];
     }
 
