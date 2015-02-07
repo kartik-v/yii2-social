@@ -1,6 +1,6 @@
 version 1.3.0
 =============
-**Date:** 04-Feb-2015
+**Date:** 06-Feb-2015
 
 - (enh #6): Remove Facebook PHP SDK support (old version v3.0). 
 - (enh #10): German translations added

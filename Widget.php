@@ -122,7 +122,7 @@ class Widget extends \yii\base\Widget
      */
     public function getConfig($widget)
     {
-        $module = Config::fetchModule($this->moduleName);
+        $module = Config::getModule($this->moduleName);
         return isset($module->$widget) ? $module->$widget : [];
     }
 
