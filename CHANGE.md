@@ -1,6 +1,6 @@
 version 1.3.0
 =============
-**Date:** 06-Feb-2015
+**Date:** 08-Feb-2015
 
 - (enh #6): Remove Facebook PHP SDK support (old version v3.0). 
 - (enh #10): German translations added
@@ -29,6 +29,7 @@ version 1.3.0
 - (enh #18): Separate Github star and watch buttons as per v2.0.
 - (enh #19): Implement GithubXPlugin based on [github buttons](https://github.com/ntkme/github-buttons).
 - (enh #20): Allow `social` module to be used as an embedded submodule.
+- (enh #22): Set dependency on kartik-v/yii2-krajee-base.
 
 version 1.2.0
 =============
