@@ -92,6 +92,9 @@ class FacebookPlugin extends Widget
             );
         }
         $this->registerAssets();
+        if ($this->type === self::COMMENT && empty($this->settings['data-href'])) {
+            $this->settings['data-href'] = Yii::$app->request->getAbsoluteUrl();
+        }
         $this->setPluginOptions();
         echo "<div id='fb-root'></div>\n" . $this->renderPlugin();
     }
@@ -109,7 +112,7 @@ class FacebookPlugin extends Widget
         return;
     js = d.createElement(s);
     js.id = id;
-    js.src = "//connect.facebook.net/{$this->language}/all.js#xfbml=1&appId={$this->appId}";
+    js.src = "//connect.facebook.net/{$this->language}/sdk.js#xfbml=1&appId={$this->appId}&version=v2.0";
     fjs.parentNode.insertBefore(js, fjs);
 }(document, 'script', 'facebook-jssdk'));                
 SCRIPT;

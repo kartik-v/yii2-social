@@ -1,6 +1,6 @@
 version 1.3.0
 =============
-**Date:** 08-Feb-2015
+**Date:** 11-Feb-2015
 
 - (enh #6): Remove Facebook PHP SDK support (old version v3.0). 
 - (enh #10): German translations added
@@ -14,7 +14,7 @@ version 1.3.0
     - New `getFbGraphUser` method gets the Facebook graph user object for current user.
     - Changes from earlier release
         - Method `getFbApi`has been removed from the social module
-        - Module `getFbUser` has been removed from the social module
+        - Method `getFbUser` has been removed from the social module
         - Set release to stable.
 - (enh #14): Add new configuration for GoogleAnalytics `anonymizeIp`.
 - (enh #15): Various enhancements and additional configuration settings for the `GoogleAnalytics` widget:
@@ -30,6 +30,7 @@ version 1.3.0
 - (enh #19): Implement GithubXPlugin based on [github buttons](https://github.com/ntkme/github-buttons).
 - (enh #20): Allow `social` module to be used as an embedded submodule.
 - (enh #22): Set dependency on kartik-v/yii2-krajee-base.
+- (enh #23): Enhance Facebook plugin and fix comments plugin width property.
 
 version 1.2.0
 =============
