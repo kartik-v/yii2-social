@@ -1,6 +1,6 @@
 version 1.3.0
 =============
-**Date:** 11-Feb-2015
+**Date:** 13-Feb-2015
 
 - (enh #6): Remove Facebook PHP SDK support (old version v3.0). 
 - (enh #10): German translations added
@@ -31,6 +31,7 @@ version 1.3.0
 - (enh #20): Allow `social` module to be used as an embedded submodule.
 - (enh #22): Set dependency on kartik-v/yii2-krajee-base.
 - (enh #23): Enhance Facebook plugin and fix comments plugin width property.
+- Set copyright year to current.
 
 version 1.2.0
 =============
