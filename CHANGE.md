@@ -1,3 +1,10 @@
+version 1.3.1
+=============
+**Date:** 22-Feb-2015
+
+- (enh #26): Add option to disable credits after Disqus widget.
+- Update copyright year till current.
+
 version 1.3.0
 =============
 **Date:** 13-Feb-2015
