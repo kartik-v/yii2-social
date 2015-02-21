@@ -35,6 +35,12 @@ class Disqus extends Widget
     public $showCount = false;
 
     /**
+     * @var boolean whether to display the credits text after the widget itself.
+     * Credits text will be used in {@link noscript} block regardless of this setting.
+     */
+    public $showCredits = true;
+
+    /**
      * @var string text for Disqus credits to be displayed at the end of the widget
      */
     public $credits;
@@ -62,10 +68,10 @@ class Disqus extends Widget
                 "var disqus_{$key} = {$value};\n" :
                 "var disqus_{$key} = '{$value}';\n";
         }
-        
+
         $params = [
             'variables' => $variables,
-            'credits' => $this->credits,
+            'credits' => $this->showCredits ? $this->credits : '',
             'noscript' => $this->renderNoScript()
         ];
         $view = ($this->showCount) ? 'disqus-count' : 'disqus-comments';
