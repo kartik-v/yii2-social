@@ -41,6 +41,7 @@ class FacebookPlugin extends Widget
     const RECO_BAR = 'fb-recommendations-bar';
     const LIKE_BOX = 'fb-like-box';
     const FACEPILE = 'fb-facepile';
+    const PAGE = 'fb-page';
 
     /**
      * @var string the Facebook Application ID.
@@ -78,6 +79,7 @@ class FacebookPlugin extends Widget
             self::RECO_BAR,
             self::LIKE_BOX,
             self::FACEPILE,
+            self::PAGE,
         ];
         parent::init();
         $this->setConfig('facebook');
