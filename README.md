@@ -1,11 +1,11 @@
 yii2-social
 ===========
 
-[![Latest Stable Version](https://poser.pugx.org/kartik-v/yii2-social/v/stable.svg)](https://packagist.org/packages/kartik-v/yii2-social)
-[![License](https://poser.pugx.org/kartik-v/yii2-social/license.svg)](https://packagist.org/packages/kartik-v/yii2-social)
-[![Total Downloads](https://poser.pugx.org/kartik-v/yii2-social/downloads.svg)](https://packagist.org/packages/kartik-v/yii2-social)
-[![Monthly Downloads](https://poser.pugx.org/kartik-v/yii2-social/d/monthly.png)](https://packagist.org/packages/kartik-v/yii2-social)
-[![Daily Downloads](https://poser.pugx.org/kartik-v/yii2-social/d/daily.png)](https://packagist.org/packages/kartik-v/yii2-social)
+[![Latest Stable Version](https://poser.pugx.org/kartik-v/yii2-social/v/stable)](https://packagist.org/packages/kartik-v/yii2-social)
+[![License](https://poser.pugx.org/kartik-v/yii2-social/license)](https://packagist.org/packages/kartik-v/yii2-social)
+[![Total Downloads](https://poser.pugx.org/kartik-v/yii2-social/downloads)](https://packagist.org/packages/kartik-v/yii2-social)
+[![Monthly Downloads](https://poser.pugx.org/kartik-v/yii2-social/d/monthly)](https://packagist.org/packages/kartik-v/yii2-social)
+[![Daily Downloads](https://poser.pugx.org/kartik-v/yii2-social/d/daily)](https://packagist.org/packages/kartik-v/yii2-social)
 
 Module that enables access to social plugins for Yii Framework 2.0. It includes support for embedding plugins from the following networks into your website:
 
