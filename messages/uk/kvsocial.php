@@ -1,5 +1,4 @@
 <?php
-
 /**
  * Message translations.
  *
@@ -17,20 +16,18 @@
  *
  * NOTE: this file must be saved in UTF-8 encoding.
  */
-return array(
-    'You must enable Javascript on your browser for the site to work optimally and display sections completely.' => 'Ви мусите дозволити Javascript у вашому браузері для оптимальної роботи сайта і відображення розділів повністю.',
-    'Please enable JavaScript to view the {pluginLink}' => 'Будь ласка, увімкніть JavaScript для перегляду {pluginLink}',
-    'comments powered by Disqus' => 'коментарі побудовані на платформі Disqus',
+return [
+    '<strong>Note:</strong> Please use an updated browser to view comments.' => '',
+    'Download' => '',
+    'Follow' => '',
+    'Fork' => '',
+    'Issue' => '',
     'Please enable JavaScript on your browser to view the Facebook {pluginName} plugin correctly on this site.' => 'Будь ласка, увімкніть JavaScript у вашому браузері, щоб переглянути Facebook {pluginName} і для його коректної роботи на даному сайті.',
-    'like' => 'подобається',
-    'share-button' => 'кнопка поділитись',
-    'send' => 'відправити',
-    'post' => 'пост',
-    'follow' => 'слідкувати',
-    'comments' => 'коментарі',
-    'activity' => 'активність',
-    'recommendations' => 'рекомендації',
-    'recommendations-bar' => 'розділ рекомендацій',
-    'like-box' => 'розділ вподобань',
-    'facepile' => 'facepile'
-);
+    'Please enable JavaScript on your browser to view the Google {pluginName} plugin correctly on this site.' => '',
+    'Please enable JavaScript on your browser to view the Twitter {pluginName} plugin correctly on this site.' => '',
+    'Please enable JavaScript to view the {pluginLink}.' => '',
+    'Star' => '',
+    'Watch' => '',
+    'comments powered by Disqus' => '',
+    'You must enable Javascript on your browser for the site to work optimally and display sections completely.' => 'Ви мусите дозволити Javascript у вашому браузері для оптимальної роботи сайта і відображення розділів повністю.',
+];

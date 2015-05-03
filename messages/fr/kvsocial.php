@@ -17,6 +17,7 @@
  * NOTE: this file must be saved in UTF-8 encoding.
  */
 return [
+    '<strong>Note:</strong> Please use an updated browser to view comments.' => '',
     'Download' => '',
     'Follow' => '',
     'Fork' => '',

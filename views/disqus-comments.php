@@ -15,11 +15,9 @@ use yii\helpers\Html;
  */
 ?>
     <div id="disqus_thread"></div>
+    <!--[if (gt IE 8)]><!-->
     <script type="text/javascript">
-        /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
         <?= $variables ?>
-
-        /* * * DON'T EDIT BELOW THIS LINE * * */
         (function () {
             var dsq = document.createElement('script');
             dsq.type = 'text/javascript';
@@ -28,5 +26,10 @@ use yii\helpers\Html;
             (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
         })();
     </script>
+    <!--<![endif]-->
+    
+    <!--[if (lt IE 9)]>
+        <div class="alert alert-warning"><?= Yii::t('kvsocial', '<strong>Note:</strong> Please use an updated browser to view comments.') ?></div>
+    <![endif]-->
 <?= $noscript ?>
 <?= $credits ?>

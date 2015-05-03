@@ -1,9 +1,10 @@
 version 1.3.1
 =============
-**Date:** 22-Feb-2015
+**Date:** 03-May-2015
 
 - (enh #26): Add option to disable credits after Disqus widget.
 - Update copyright year till current.
+- (enh #29): Validate Disqus comment rendering for older IE browsers.
 
 version 1.3.0
 =============

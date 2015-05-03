@@ -14,6 +14,7 @@ use yii\helpers\Html;
  * @since 1.0
  */
 ?>
+    <!--[if (gt IE 8)]><!-->
     <script type="text/javascript">
         /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
         <?= $variables ?>
@@ -26,4 +27,5 @@ use yii\helpers\Html;
             (document.getElementsByTagName('HEAD')[0] || document.getElementsByTagName('BODY')[0]).appendChild(s);
         }());
     </script>
+    <!--<![endif]-->
 <?= $noscript ?>
