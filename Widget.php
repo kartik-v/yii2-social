@@ -181,7 +181,7 @@ class Widget extends \yii\base\Widget
      */
     protected function setPluginOptions($convertLowerCase = true)
     {
-        $this->options = ['class' => $this->type];
+        Html::addCssClass($this->options, $this->type);
         foreach ($this->settings as $key => $value) {
             $key = str_replace($this->dataApiPrefix, "", $key);
             if ($convertLowerCase) {

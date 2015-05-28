@@ -38,6 +38,7 @@ Module that enables access to social plugins for Yii Framework 2.0. It includes 
   - Hash Tag Button
   - Mention Button
   - Embedded Posts/Tweets
+  - Embedded Timeline
 - GitHub
   - Watch Button
   - Star Button

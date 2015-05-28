@@ -6,6 +6,7 @@ version 1.3.1
 - Update copyright year till current.
 - (enh #29): Validate Disqus comment rendering for older IE browsers.
 - (enh #30): Generate default `en` message translation file.
+- (enh #31): Implement twitter embedded timelines (feeds).
 
 version 1.3.0
 =============

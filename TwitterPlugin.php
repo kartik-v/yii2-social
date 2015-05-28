@@ -11,6 +11,7 @@ namespace kartik\social;
 use Yii;
 use yii\base\InvalidConfigException;
 use yii\helpers\Html;
+use yii\helpers\ArrayHelper;
 
 /**
  * Widget to render various Twitter plugins
@@ -35,6 +36,7 @@ class TwitterPlugin extends Widget
     const HASHTAG = 'twitter-hashtag-button';
     const MENTION = 'twitter-mention-button';
     const TWEET = 'twitter-tweet';
+    const TIMELINE = 'twitter-timeline';
 
     /**
      * @var string the Twitter plugin type
@@ -60,6 +62,21 @@ class TwitterPlugin extends Widget
     public $settings = [];
 
     /**
+     * @var string the additional configuration options for TwitterPlugin::TIMELINE, in 
+     * case you do not wish to use a user timeline. One of the following settings may be 
+     * set:
+     * - `listSlug`: string, the list slug and applicable only if you want to use embedded list timeline.
+     *   @see https://dev.twitter.com/web/embedded-timelines/list
+     * - `search`: string, the search hash tag, if you want to use embedded search timeline.
+     *   @see https://dev.twitter.com/web/embedded-timelines/search
+     * - `collectionId`: string, the collection identifier, if you want to use embedded collection timeline.
+     *   @see https://dev.twitter.com/web/embedded-timelines/collection
+     * - `collectionName`: string, the collection name, if you want to use embedded collection timeline.
+     *   @see https://dev.twitter.com/web/embedded-timelines/collection
+     */
+    public $timelineConfig = [];
+
+    /**
      * Initialize the widget
      *
      * @throws InvalidConfigException
@@ -72,6 +89,7 @@ class TwitterPlugin extends Widget
             self::HASHTAG,
             self::MENTION,
             self::TWEET,
+            self::TIMELINE
         ];
         parent::init();
         $this->tag = ($this->type === self::TWEET) ? 'blockquote' : 'a';
@@ -80,11 +98,16 @@ class TwitterPlugin extends Widget
         if ($this->type === self::HASHTAG && empty($this->hashTag) && empty($this->options['data-href'])) {
             throw new InvalidConfigException("The Twitter 'hashTag' must be set for displaying the 'hashtag' button.");
         }
-        if (($this->type === self::FOLLOW || $this->type === self::HASHTAG || $this->type === self::MENTION) && empty($this->screenName) && empty($this->options['data-href'])) {
+        if ($this->type !== self::SHARE && $this->type !== self::TWEET && empty($this->screenName)) {
             throw new InvalidConfigException("The Twitter 'screenName' must be set for displaying the " . str_replace('-', ' ', $this->type) . ".");
         }
         if ($this->type === self::TWEET && empty($this->content)) {
             throw new InvalidConfigException("The Twitter 'content' must be set for displaying 'embedded tweets'.");
+        }
+        if ($this->type === self::TIMELINE) {
+            if (empty($this->settings['widget-id'])) {
+                throw new InvalidConfigException("The Twitter \"settings['widget-id']\" must be set for displaying the twitter timeline.");
+            }
         }
         if (!isset($this->noscript)) {
             $this->noscript = Yii::t('kvsocial', 'Please enable JavaScript on your browser to view the Twitter {pluginName} plugin correctly on this site.', ['pluginName' => Yii::t('kvsocial', str_replace('twitter-', '', $this->type))]
@@ -92,13 +115,53 @@ class TwitterPlugin extends Widget
         }
         $this->registerAssets();
         $this->setPluginOptions();
-        if ($this->type === self::FOLLOW) {
-            $this->options['href'] = 'https://twitter.com/' . Html::encode($this->screenName);
-        } elseif ($this->type === self::HASHTAG) {
-            $this->options['href'] = 'https://twitter.com/intent/tweet?button_hashtag=' . Html::encode($this->hashTag);
-            $this->options['data-related'] = empty($this->options['data-related']) ? $this->screenName : $this->screenName . ',' . $this->options['data-related'];
-        } elseif ($this->type === self::MENTION) {
-            $this->options['href'] = 'https://twitter.com/intent?screen_name=' . Html::encode($this->screenName);
+        $screenName = Html::encode($this->screenName);
+        switch($this->type) {
+            case self::FOLLOW:
+                $this->options['href'] = "https://twitter.com/{$screenName}";
+                break;
+            case self::HASHTAG:
+                $this->options['href'] = 'https://twitter.com/intent/tweet?button_hashtag=' . Html::encode($this->hashTag);
+                $this->options['data-related'] = empty($this->options['data-related']) ? $screenName : $screenName . ',' . $this->options['data-related'];
+                break;
+            case self::MENTION:
+                $this->options['href'] = "https://twitter.com/intent?screen_name={$screenName}";
+                break;
+            case self::TIMELINE:
+                $this->options['href'] = "https://twitter.com/{$screenName}";
+                $content = 'Tweets by @' . $this->screenName;
+                if (isset($this->timelineConfig['listSlug'])) {
+                    $slug = Html::encode($this->timelineConfig['listSlug']);
+                    $this->options['href'] .= "/lists/{$slug}";
+                    $this->options['data-list-slug'] = $slug;
+                    if (!empty($this->options['data-list-owner-screen-name'])) {
+                        $screenName = Html::encode($this->options['data-list-owner-screen-name']);
+                    };
+                    $this->options['data-list-owner-screen-name'] = $screenName;
+                    $content = "Tweets from " . $this->options['href'];
+                } elseif (isset($this->timelineConfig['search'])) {
+                    $search = $this->timelineConfig['search'];
+                    $isHash = substr($search, 0, 1) === '#';
+                    if ($isHash) {
+                        $search = substr($search, 1);
+                    }
+                    $search = Html::encode($search);
+                    $this->options['href'] =  $isHash ? "https://twitter.com/hashtag/{$search}" : "https://twitter.com/search?q={$search}";
+                    $content = $this->timelineConfig['search'] . ' Tweets';
+                } elseif (isset($this->timelineConfig['collectionId'])) {
+                    $id = Html::encode($this->timelineConfig['collectionId']);
+                    $this->options['href'] .= "/timelines/{$id}";
+                    if (empty($this->options['data-custom-timeline-id'])) {
+                        $this->options['data-custom-timeline-id'] = $id;
+                    }
+                    $content = ArrayHelper::getValue($this->timelineConfig, 'collectionName', '');
+                } else {
+                    $this->options['data-screen-name'] = $screenName;
+                }                    
+                if (empty($this->content)) {
+                    $this->content = $content;
+                }
+                break;
         }
         echo $this->renderPlugin();
     }
