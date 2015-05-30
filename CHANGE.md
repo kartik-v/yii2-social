@@ -1,12 +1,12 @@
 version 1.3.1
 =============
-**Date:** 12-May-2015
+**Date:** 30-May-2015
 
+- (enh #21): Implement VKontakte plugin.
 - (enh #26): Add option to disable credits after Disqus widget.
 - Update copyright year till current.
 - (enh #29): Validate Disqus comment rendering for older IE browsers.
 - (enh #30): Generate default `en` message translation file.
-- (enh #31): Implement twitter embedded timelines (feeds).
 
 version 1.3.0
 =============

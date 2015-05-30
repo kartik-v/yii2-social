@@ -39,6 +39,16 @@ Module that enables access to social plugins for Yii Framework 2.0. It includes 
   - Mention Button
   - Embedded Posts/Tweets
   - Embedded Timeline
+- VKontakte
+  - Comments Button
+  - Embedded Post
+  - Community/Group
+  - Like Button
+  - Recommendations
+  - Poll Module
+  - Authorization
+  - Share Content
+  - Subscribe  
 - GitHub
   - Watch Button
   - Star Button
