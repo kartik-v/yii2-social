@@ -11,9 +11,6 @@ namespace kartik\social;
 use Yii;
 use yii\helpers\ArrayHelper;
 use Facebook\FacebookSession;
-use Facebook\FacebookRedirectLoginHelper;
-use Facebook\FacebookCanvasLoginHelper;
-use Facebook\FacebookJavaScriptLoginHelper;
 use Facebook\FacebookRequest;
 use Facebook\GraphUser;
 use Facebook\FacebookRequestException;
@@ -171,10 +168,9 @@ class Module extends \yii\base\Module
     /**
      * Returns the Facebook Session object.
      *
-     * @param string source string|FacebookRedirectLoginHelper|FacebookCanvasLoginHelper|FacebookJavaScriptLoginHelper 
-     *    the token or the helper instance. If its provided as a string, then it will be assumed to be a
-     *    valid access token based on which session will be returned. Else, it will be derived from one of the helper
-     *    objects provided.
+     * @param string source string|object the token or the helper instance. If it is provided as a string, then
+     * it will be assumed to be a valid access token based on which session will be returned. Else, it will be 
+     * derived from one of the helper objects provided.
      *
      * @return FacebookSession
      *
@@ -186,19 +182,10 @@ class Module extends \yii\base\Module
             return $this->_fbSession;
         }
         $source = ArrayHelper::remove($params, 'source', '');
-        if (
-            empty($source) || !is_string($source) || 
-            !($source instanceof FacebookRedirectLoginHelper) || 
-            !($source instanceof FacebookCanvasLoginHelper) || 
-            !($source instanceof FacebookJavaScriptLoginHelper)
-        ) {
+        if (empty($source) || (($isObject = is_object($source)) && !method_exists($source, 'getSession'))) {
             return null;
         }
-        if (is_string($source)) {
-            $this->_fbSession = new FacebookSession($source);            
-        } else {
-            $this->_fbSession = $source->getSession();
-        }
+        $this->_fbSession = $isObject ? $source->getSession() : new FacebookSession($source);
         return $this->_fbSession;
     }
     
