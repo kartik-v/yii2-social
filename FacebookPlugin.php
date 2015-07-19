@@ -54,6 +54,12 @@ class FacebookPlugin extends Widget
      * defaults to Facebook Comments
      */
     public $type = self::COMMENT;
+    
+    /**
+     * @var bool whether to load facebook JS asynchronously.
+     * Defaults to `true`.
+     */
+    public $async = true;
 
     /**
      * @var array the Facebook plugin settings
@@ -107,6 +113,7 @@ class FacebookPlugin extends Widget
     protected function registerAssets()
     {
         $view = $this->getView();
+        $async = $this->async ? "js.async = true;" : "";
         $js = <<< SCRIPT
 (function(d, s, id) {
     var js, fjs = d.getElementsByTagName(s)[0];
@@ -114,6 +121,7 @@ class FacebookPlugin extends Widget
         return;
     js = d.createElement(s);
     js.id = id;
+    {$async}
     js.src = "//connect.facebook.net/{$this->language}/sdk.js#xfbml=1&appId={$this->appId}&version=v2.0";
     fjs.parentNode.insertBefore(js, fjs);
 }(document, 'script', 'facebook-jssdk'));                

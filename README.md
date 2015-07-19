@@ -71,16 +71,16 @@ The preferred way to install this extension is through [composer](http://getcomp
 Either run
 
 ```
-$ php composer.phar require kartik-v/yii2-social "dev-master"
+$ php composer.phar require kartik-v/yii2-social "@dev"
 ```
 
 or add
 
 ```
-"kartik-v/yii2-social": "dev-master"
+"kartik-v/yii2-social": "@dev"
 ```
 
-to the ```require``` section of your `composer.json` file.
+to the `require` section of your `composer.json` file.
 
 ## Usage
 
@@ -142,6 +142,9 @@ You can view [usage and demos](http://demos.krajee.com/social) on the module.
 
 ### GitHub
 [```VIEW DEMO```](http://demos.krajee.com/social-details/github)
+
+### GitHubX
+[```VIEW DEMO```](http://demos.krajee.com/social-details/githubx)
 
 ## License
 

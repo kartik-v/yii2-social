@@ -8,7 +8,9 @@ version 1.3.1
 - (enh #29): Validate Disqus comment rendering for older IE browsers.
 - (enh #30): Generate default `en` message translation file.
 - (enh #32): Enhancements to generate Facebook session better.
+- (enh #33): Add Spanish translations.
 - (enh #35): Better composer version dependencies for Facebook SDK.
+- (enh #36): Add `FacebookPlugin::async` property.
 
 version 1.3.0
 =============
