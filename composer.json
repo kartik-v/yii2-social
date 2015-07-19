@@ -12,10 +12,9 @@
             "homepage": "http://www.krajee.com/"
         }
     ],
-    "minimum-stability": "stable",
     "require": {
-        "kartik-v/yii2-krajee-base": "@dev",
-        "facebook/php-sdk-v4": "@dev"
+        "kartik-v/yii2-krajee-base": "~1.7",
+        "facebook/php-sdk-v4": "~4.0"
     },
     "autoload": {
         "psr-4": {

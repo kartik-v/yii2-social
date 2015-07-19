@@ -1,6 +1,6 @@
 version 1.3.1
 =============
-**Date:** 02-Jun-2015
+**Date:** 19-Jul-2015
 
 - (enh #21): Implement VKontakte plugin.
 - (enh #26): Add option to disable credits after Disqus widget.
@@ -8,6 +8,7 @@ version 1.3.1
 - (enh #29): Validate Disqus comment rendering for older IE browsers.
 - (enh #30): Generate default `en` message translation file.
 - (enh #32): Enhancements to generate Facebook session better.
+- (enh #35): Better composer version dependencies for Facebook SDK.
 
 version 1.3.0
 =============
