@@ -1,5 +1,4 @@
 <?php
-
 /**
  * @copyright Copyright &copy; Kartik Visweswaran, Krajee.com, 2013 - 2015
  * @package yii2-social
@@ -130,5 +129,4 @@ class GoogleAnalytics extends Widget
         ];
         echo $this->render('google-analytics', $params);
     }
-
 }

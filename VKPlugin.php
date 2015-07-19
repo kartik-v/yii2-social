@@ -1,5 +1,4 @@
 <?php
-
 /**
  * @copyright Copyright &copy; Kartik Visweswaran, Krajee.com, 2013 - 2015
  * @package yii2-social
@@ -32,7 +31,6 @@ use yii\web\View;
  */
 class VKPlugin extends Widget
 {
-
     const COMMENTS = 'vk_comments';
     const POST = 'vk_post';
     const COMMUNITY = 'vk_group';
@@ -180,5 +178,4 @@ class VKPlugin extends Widget
         }
         $view->registerJs($js);
     }
-
 }

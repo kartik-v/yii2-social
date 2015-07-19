@@ -1,5 +1,4 @@
 <?php
-
 /**
  * @copyright Copyright &copy; Kartik Visweswaran, Krajee.com, 2013 - 2015
  * @package yii2-social
@@ -30,7 +29,6 @@ use yii\helpers\ArrayHelper;
  */
 class TwitterPlugin extends Widget
 {
-
     const SHARE = 'twitter-share-button';
     const FOLLOW = 'twitter-follow-button';
     const HASHTAG = 'twitter-hashtag-button';
@@ -188,7 +186,4 @@ class TwitterPlugin extends Widget
 SCRIPT;
         $view->registerJs($js);
     }
-
 }
-
-?>

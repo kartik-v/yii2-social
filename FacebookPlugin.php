@@ -1,5 +1,4 @@
 <?php
-
 /**
  * @copyright Copyright &copy; Kartik Visweswaran, Krajee.com, 2013 - 2015
  * @package yii2-social
@@ -29,7 +28,6 @@ use yii\helpers\Html;
  */
 class FacebookPlugin extends Widget
 {
-
     const LIKE = 'fb-like';
     const SHARE = 'fb-share-button';
     const SEND = 'fb-send';
@@ -128,5 +126,4 @@ class FacebookPlugin extends Widget
 SCRIPT;
         $view->registerJs($js);
     }
-
 }

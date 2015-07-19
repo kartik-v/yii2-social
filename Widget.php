@@ -1,5 +1,4 @@
 <?php
-
 /**
  * @copyright Copyright &copy; Kartik Visweswaran, Krajee.com, 2013 - 2015
  * @package yii2-social
@@ -190,5 +189,4 @@ class Widget extends \yii\base\Widget
             $this->options[$this->dataApiPrefix . $key] = $value;
         }
     }
-
 }

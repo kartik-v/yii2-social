@@ -1,5 +1,4 @@
 <?php
-
 /**
  * @copyright Copyright &copy; Kartik Visweswaran, Krajee.com, 2013 - 2015
  * @package yii2-social
@@ -29,7 +28,6 @@ use yii\web\View;
  */
 class GooglePlugin extends Widget
 {
-
     const SIGNIN = 'g-signin';
     const PLUS_ONE = 'g-plusone';
     const SHARE = 'g-plus';
@@ -153,5 +151,4 @@ class GooglePlugin extends Widget
         ]);
         $view->registerJs("\nwindow.___gcfg={lang:'{$this->language}'};\n", View::POS_HEAD);
     }
-
 }

@@ -1,5 +1,4 @@
 <?php
-
 /**
  * @copyright Copyright &copy; Kartik Visweswaran, Krajee.com, 2013 - 2015
  * @package yii2-social
@@ -32,7 +31,6 @@ use yii\helpers\Url;
  */
 class GithubPlugin extends Widget
 {
-
     const WATCH = 'watch';
     const STAR = 'star';
     const FORK = 'fork';
@@ -104,5 +102,4 @@ class GithubPlugin extends Widget
         $this->options['src'] = ltrim(Url::to([self::API] + $this->settings), Url::to(['/']));
         echo Html::tag('iframe', '', $this->options);
     }
-
 }

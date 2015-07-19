@@ -1,5 +1,4 @@
 <?php
-
 /**
  * @copyright Copyright &copy; Kartik Visweswaran, Krajee.com, 2013 - 2015
  * @package yii2-social
@@ -23,7 +22,6 @@ use Facebook\FacebookRequestException;
  */
 class Module extends \yii\base\Module
 {
-
     /**
      * @var array the disqus configuration. You can setup these keys. These can
      * be overridden at the widget level.
@@ -220,5 +218,4 @@ class Module extends \yii\base\Module
             $session, 'GET', '/me'
         ))->execute()->getGraphObject(GraphUser::className());
     }
-
 }

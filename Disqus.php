@@ -1,5 +1,4 @@
 <?php
-
 /**
  * @copyright Copyright &copy; Kartik Visweswaran, Krajee.com, 2013 - 2015
  * @package yii2-social
@@ -27,7 +26,6 @@ use yii\helpers\Html;
  */
 class Disqus extends Widget
 {
-
     /**
      * @var boolean whether to display the comment count summary instead of the
      * detailed Disqus standard comments widget
@@ -77,5 +75,4 @@ class Disqus extends Widget
         $view = ($this->showCount) ? 'disqus-count' : 'disqus-comments';
         echo $this->render($view, $params);
     }
-
 }
