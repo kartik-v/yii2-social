@@ -40,14 +40,14 @@ class VKPlugin extends Widget
     const AUTH = 'vk_auth';
     const SHARE = 'vk_share';
     const SUBSCRIBE = 'vk_subscribe';
-    
+
     /**
      * @var string the VKontakte Application ID. This is mandatory.
      */
     public $apiId;
 
     /**
-     * @var array the additional 
+     * @var array the additional
      */
     public $config;
 
@@ -61,12 +61,12 @@ class VKPlugin extends Widget
      * @var array the VKontakte plugin settings that vary based on type.
      */
     public $settings = [];
-    
+
     /**
      * @var array the cached options
      */
     protected $_options = [];
-    
+
     /**
      * @var bool whether to initialize VK with the `$apiId`
      */
@@ -79,6 +79,8 @@ class VKPlugin extends Widget
      */
     public function init()
     {
+        static $initDone = false;
+
         $this->validPlugins = [
             self::COMMENTS,
             self::POST,
@@ -92,7 +94,13 @@ class VKPlugin extends Widget
         ];
         parent::init();
         $this->setConfig('vk');
-        $this->_initVk = !in_array($this->type, [self::POST, self::COMMUNITY, self::SHARE, self::SUBSCRIBE]);
+
+        $initRequired  = !in_array($this->type, [self::POST, self::COMMUNITY, self::SHARE, self::SUBSCRIBE]);
+        $this->_initVk = $initRequired && !$initDone;
+        if ($this->_initVk) {
+            $initDone = true;
+        }
+
         if (empty($this->options['id'])) {
             $this->options['id'] = $this->getId();
         }
@@ -121,11 +129,24 @@ class VKPlugin extends Widget
     {
         $id = $this->options['id'];
         $options = Json::encode($this->_options);
-        if ($this->type === self::SHARE) {
-            return $options;
-        }
-        $param = "'{$id}',{$options}";
-        switch($this->type) {
+        $param = "'$id', $options";
+        switch ($this->type) {
+            case self::SHARE:
+                $param = '';
+                if (!empty($this->_options)) {
+                    $shareOpts = $this->_options;
+                    $buttonOpts = [];
+                    if (isset($shareOpts['type'])) {
+                        $buttonOpts['type'] = $shareOpts['type'];
+                        unset($shareOpts['type']);
+                    }
+                    if (isset($shareOpts['text'])) {
+                        $buttonOpts['text'] = $shareOpts['text'];
+                        unset($shareOpts['text']);
+                    }
+                    $param = Json::encode($shareOpts) . ', ' . Json::encode($buttonOpts);
+                }
+                break;
             case self::LIKE:
                 if (isset($this->settings['page_id'])) {
                     $param .= ', ' . $this->settings['page_id'];
@@ -143,18 +164,18 @@ class VKPlugin extends Widget
                 break;
             case self::SUBSCRIBE:
                 $ownerId = ArrayHelper::getValue($this->settings, 'owner_id', 0);
-                $param .= ", {$ownerId}";
-                break;    
+                $param .= ", $ownerId";
+                break;
             case self::POST:
                 $ownerId = ArrayHelper::getValue($this->settings, 'owner_id', 0);
                 $postId = ArrayHelper::getValue($this->settings, 'post_id', 0);
                 $hash = ArrayHelper::getValue($this->settings, 'hash', '');
-                $param = "'{$id}', {$ownerId}, {$postId}, '{$hash}', {$options}";
-                break;    
+                $param = "'$id', $ownerId, $postId, '$hash', $options";
+                break;
         }
         return $param;
     }
-    
+
     /**
      * Registers the necessary assets
      */
@@ -164,18 +185,32 @@ class VKPlugin extends Widget
         $params = $this->getPluginParams();
         $id = $this->options['id'];
         if ($this->type === self::SHARE) {
-            $view->registerCss('.vk_share td a{height:21px!important}');
-            $view->registerJsFile('http://vk.com/js/api/share.js?91', ['charset'=>'windows-1251', 'position'=>View::POS_HEAD]);
-            $js = "\$('#{$id}').html(VK.Share.button(false,{$params}));";
+            $script   = 'share.js?91';
+            $scriptId = 'vk_share_script_tag';
+            $check    = 'VK.Share';
+            $call     = "\$('#$id').html(VK.Share.button($params))";
         } else {
-            $view->registerJsFile('http://vk.com/js/api/openapi.js?116', ['position'=>View::POS_HEAD]);
-            $w = ucfirst(substr($this->type, 3));
-            if ($this->_initVk) { 
+            $script   = 'openapi.js?116';
+            $scriptId = 'vk_openapi_script_tag';
+            $check    = 'VK.Widgets';
+            $widget   = ucfirst(substr($this->type, 3));
+            $call     = "VK.Widgets.$widget($params)";
+            if ($this->_initVk) {
                 $initOpts = Json::encode(['apiId' => $this->apiId, 'onlyWidgets' => true]);
-                $view->registerJs("VK.init({$initOpts});", View::POS_HEAD);
+                $js = "VK.init({$initOpts});\n$js";
             }
-            $js = "VK.Widgets.{$w}({$params});";
         }
+
+        $view->registerJsFile('//vk.com/js/api/' . $script, ['async'=>true, 'id'=>$scriptId, 'position'=>View::POS_HEAD]);
+        $js = <<< SCRIPT
+if (window.VK && $check) {
+    $call;
+} else {
+    \$('#$scriptId').load(function() {
+        $call;
+    });
+}
+SCRIPT;
         $view->registerJs($js);
     }
 }
