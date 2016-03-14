@@ -1,7 +1,8 @@
 yii2-social
 ===========
 
-[![Latest Stable Version](https://poser.pugx.org/kartik-v/yii2-social/v/stable)](https://packagist.org/packages/kartik-v/yii2-social)
+[![Stable Version](https://poser.pugx.org/kartik-v/yii2-social/v/stable)](https://packagist.org/packages/kartik-v/yii2-social)
+[![Unstable Version](https://poser.pugx.org/kartik-v/yii2-social/v/unstable)](https://packagist.org/packages/kartik-v/yii2-social)
 [![License](https://poser.pugx.org/kartik-v/yii2-social/license)](https://packagist.org/packages/kartik-v/yii2-social)
 [![Total Downloads](https://poser.pugx.org/kartik-v/yii2-social/downloads)](https://packagist.org/packages/kartik-v/yii2-social)
 [![Monthly Downloads](https://poser.pugx.org/kartik-v/yii2-social/d/monthly)](https://packagist.org/packages/kartik-v/yii2-social)

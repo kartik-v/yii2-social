@@ -1,3 +1,15 @@
+Change Log: `yii2-grid`
+=======================
+
+version 1.3.2
+=============
+**Date:** 14-Mar-2016
+
+- (enh #42): Add Italian Translations.
+- (enh #43): Fix VK styles.
+- (enh #46): Update to Facebook SDK release v5.0. (BC Breaking Change) 
+- Add branch alias for dev-master latest release.
+
 version 1.3.1
 =============
 **Date:** 19-Jul-2015

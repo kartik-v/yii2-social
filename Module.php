@@ -1,18 +1,18 @@
 <?php
 /**
- * @copyright Copyright &copy; Kartik Visweswaran, Krajee.com, 2013 - 2015
+ * @copyright Copyright &copy; Kartik Visweswaran, Krajee.com, 2013 - 2016
  * @package yii2-social
- * @version 1.3.1
+ * @version 1.3.2
  */
 
 namespace kartik\social;
 
 use Yii;
+use yii\helpers\Html;
 use yii\helpers\ArrayHelper;
-use Facebook\FacebookSession;
-use Facebook\FacebookRequest;
-use Facebook\GraphUser;
-use Facebook\FacebookRequestException;
+use yii\base\InvalidConfigException;
+use \Facebook\Facebook;
+use yii\web\session;
 
 /**
  * Module for configuring all social widgets
@@ -23,8 +23,7 @@ use Facebook\FacebookRequestException;
 class Module extends \yii\base\Module
 {
     /**
-     * @var array the disqus configuration. You can setup these keys. These can
-     * be overridden at the widget level.
+     * @var array the disqus configuration. You can setup these keys. These can be overridden at the widget level.
      * - settings: array the configuration for the discus widget
      *   - shortname: string the disqus forum shortname
      *   - identifier: string the disqus identifier for your page
@@ -34,12 +33,12 @@ class Module extends \yii\base\Module
      *   - category_id: string the category to be used for the current page. This
      *     is used when creating the thread on Disqus for the first time.
      *   - disable_mobile: boolean disable use of mobile optimized version of Disqus.
-     * - showCount: boolean whether to display the comment count summary instead
-     *   of the detailed Disqus standard comments widget
-     * - noscript: string/boolean text to be displayed if browser does not support
-     *   javascript. If set to false will not displayed.
-     * - noscriptOptions: array HTML attributes for the noscript message container.
-     *   Defaults to ['class' => 'alert alert-danger'].
+     * - showCount: boolean whether to display the comment count summary instead of the detailed Disqus standard
+     *     comments widget
+     * - noscript: string / bool, text to be displayed if browser does not support javascript. If set to false will not
+     *     displayed.
+     * - noscriptOptions: array, HTML attributes for the noscript message container. Defaults to `['class' => 'alert
+     *     alert-danger']`.
      */
     public $disqus = [];
 
@@ -47,10 +46,11 @@ class Module extends \yii\base\Module
      * @var array the facebook api configuration. You can setup these keys:
      * - appId: string the Facebook Application ID. This is mandatory.
      * - secret: string the Facebook Application Secret. This is mandatory.
-     * - noscript: string/boolean text to be displayed if browser does not support
-     *   javascript. If set to false will not displayed.
-     * - noscriptOptions: array HTML attributes for the noscript message container.
-     *   Defaults to ['class' => 'alert alert-danger'].
+     * - default_graph_version: string, the default graph version. Defaults to `v2.5`.
+     * - noscript: string / bool, text to be displayed if browser does not support javascript. If set to `false`, this
+     *      will not displayed.
+     * - noscriptOptions: array, HTML attributes for the noscript message container. Defaults to:
+     *     `['class' => 'alert alert-danger']`.
      */
     public $facebook = [];
 
@@ -58,10 +58,10 @@ class Module extends \yii\base\Module
      * @var array the google api configuration. You can setup these keys:
      * - clientId: string the Google Client ID. This is mandatory.
      * - secret: string the Google Client Application Secret. This is mandatory.
-     * - noscript: string/boolean text to be displayed if browser does not support
-     *   javascript. If set to false will not displayed.
-     * - noscriptOptions: array HTML attributes for the noscript message container.
-     *   Defaults to ['class' => 'alert alert-danger'].
+     * - noscript: string / bool, text to be displayed if browser does not support javascript. If set to `false`, this
+     *      will not displayed.
+     * - noscriptOptions: array, HTML attributes for the noscript message container. Defaults to:
+     *     `['class' => 'alert alert-danger']`.
      */
     public $google = [];
 
@@ -69,10 +69,10 @@ class Module extends \yii\base\Module
      * @var array the google analytics api configuration. You can setup these keys:
      * - id: string the Google Analytics Tracking ID.
      * - domain: string the domain name of your website where the tracking code will be displayed.
-     * - newVersion: boolean whether to insert the new version of the google analytics tracking code.
-     *   Defaults to true.
-     * - oldVersion: boolean whether to insert the old version of the google analytics tracking code.
-     *   Defaults to false.
+     * - newVersion: boolean whether to insert the new version of the google analytics tracking code. Defaults to
+     *     `true`.
+     * - oldVersion: boolean whether to insert the old version of the google analytics tracking code. Defaults to
+     *     `false`.
      */
     public $googleAnalytics = [];
 
@@ -81,20 +81,20 @@ class Module extends \yii\base\Module
      * - screenName: string the Twitter Screen Name. This is mandatory for
      *   follow, mention, and hashtag buttons.
      * - hashTag: string the Twitter Hash Tag.
-     * - noscript: string/boolean text to be displayed if browser does not support
-     *   javascript. If set to false will not displayed.
-     * - noscriptOptions: array HTML attributes for the noscript message container.
-     *   Defaults to ['class' => 'alert alert-danger'].
+     * - noscript: string / bool, text to be displayed if browser does not support javascript. If set to `false`, this
+     *      will not displayed.
+     * - noscriptOptions: array, HTML attributes for the noscript message container. Defaults to:
+     *     `['class' => 'alert alert-danger']`.
      */
     public $twitter = [];
 
     /**
      * @var array the VKontakte api configuration. You can setup these keys:
      * - apiId: string|int, the VK API identifier.
-     * - noscript: string/boolean text to be displayed if browser does not support
-     *   javascript. If set to false will not displayed.
-     * - noscriptOptions: array HTML attributes for the noscript message container.
-     *   Defaults to ['class' => 'alert alert-danger'].
+     * - noscript: string / bool, text to be displayed if browser does not support javascript. If set to `false`, this
+     *      will not displayed.
+     * - noscriptOptions: array, HTML attributes for the noscript message container. Defaults to:
+     *     `['class' => 'alert alert-danger']`.
      */
     public $vk = [];
 
@@ -103,10 +103,10 @@ class Module extends \yii\base\Module
      * - type: string the Github button type.
      * - settings: array the configuration for the GitHub buttons widget
      * - options: array the HTML attributes for the GitHub buttons iframe container.
-     * - noscript: string/boolean text to be displayed if browser does not support
-     *   javascript. If set to false will not displayed.
-     * - noscriptOptions: array HTML attributes for the noscript message container.
-     *   Defaults to ['class' => 'alert alert-danger'].
+     * - noscript: string / bool, text to be displayed if browser does not support javascript. If set to `false`, this
+     *      will not displayed.
+     * - noscriptOptions: array, HTML attributes for the noscript message container. Defaults to:
+     *     `['class' => 'alert alert-danger']`.
      */
     public $github = [];
 
@@ -117,105 +117,110 @@ class Module extends \yii\base\Module
      * - repo: string the Github repo name.
      * - settings: array the configuration for the GitHub buttons widget
      * - options: array the HTML attributes for the GitHub buttons iframe container.
-     * - noscript: string/boolean text to be displayed if browser does not support
-     *   javascript. If set to false will not displayed.
-     * - noscriptOptions: array HTML attributes for the noscript message container.
-     *   Defaults to ['class' => 'alert alert-danger'].
+     * - noscript: string / bool, text to be displayed if browser does not support javascript. If set to `false`, this
+     *      will not displayed.
+     * - noscriptOptions: array, HTML attributes for the noscript message container. Defaults to:
+     *     `['class' => 'alert alert-danger']`.
      */
     public $githubX = [];
 
     /**
-     * @var FacebookSession the Facebook session object
+     * @var Facebook the Facebook object
      */
-    private $_fbSession;
+    private $_fbObject;
 
     /**
-     * @var GraphUser the Facebook graph object for current user
-     */
-    private $_fbGraphUser; 
-    
-    /**
-     * Returns the Facebook Session object
+     * Gets the Facebook object based on supplied parameters or uses module level facebook settings
      *
-     * @param array $params should be set as $key=>$value,
-     * where $key is one of:
-     * - 'appId': string, the facebook application id (if not set, this  
-     *    will default from module facebook settings) 
-     * - 'secret': string, the facebook application secret (if not set, this 
-     *    will default from module facebook settings)
+     * @param array $params the parameters to be set for the facebook session. If not set, will use the module level
+     *     facebook settings.
      *
-     * @return void
+     * @return Facebook object
      *
      * @throws InvalidConfigException
      */
-    public function initFbSession($params = [])
+    public function getFb($params = [])
     {
+        if (!isset($this->_fbObject)) {
+            $this->setFb($params);
+        }
+        return $this->_fbObject;
+    }
+
+    /**
+     * Sets the Facebook object based on supplied parameters or uses module level facebook settings
+     *
+     * @param array|null $params , if set to null the facebook object will be set to a null value. If set as an array,
+     *     the `$params` should be set as `$key => $value` pairs, where `$key` is one of:
+     * - 'app_id': string, the facebook application id (if not set, this will default from module facebook settings)
+     * - 'app_secret': string, the facebook application secret (if not set, this will default from module facebook
+     *     settings)
+     * - 'default_graph_version': string, the default facebook graph version. Defaults to 'v2.5'. This typically must
+     *     be set to the latest facebook graph version.
+     */
+    public function setFb($params = [])
+    {
+        if ($params === null) {
+            $this->_fbObject = null;
+            return;
+        }
         $params += $this->facebook;
         $appId = null;
         $secret = null;
+        $default_graph_version = 'v2.5';
         extract($params);
-        if (empty($appId)) {
-            throw new InvalidConfigException("The Facebook 'appId' has not been set.");
+        static::checkFbConfig('appId', $appId);
+        static::checkFbConfig('secret', $secret);
+        static::checkFbConfig('default_graph_version', $default_graph_version);
+        $params['app_id'] = $params['appId'];
+        $params['app_secret'] = $params['secret'];
+        if (!isset($params['persistent_data_handler'])) {
+            $params['persistent_data_handler'] = 'session';
         }
-        if (empty($secret)) {
-            throw new InvalidConfigException("The Facebook 'secret' has not been set.");
+        unset($params['appId'], $params['secret']);
+        $persistence = ArrayHelper::getValue($params, 'persistent_data_handler');
+        if ($persistence === 'session' && !session_id()) {
+            $session = new Session;
+            $session->open();
         }
-        FacebookSession::setDefaultApplication($appId, $secret);
+        $this->_fbObject = new Facebook($params);
     }
-    
+
     /**
-     * Returns the Facebook Session object.
+     * Generates and returns a facebook login link
      *
-     * @param string source string|object the token or the helper instance. If it is provided as a string, then
-     * it will be assumed to be a valid access token based on which session will be returned. Else, it will be 
-     * derived from one of the helper objects provided.
+     * @param string   $callback the absolute callback url action that will be used by Facebook SDK redirect login
+     *     helper.
+     * @param array    $options the HTML attributes for the login link. The following special options are recognized:
+     *     - `label`: string, the label to display for the link. Defaults to 'Login with Facebook'.
+     * @param array    $permissions the permissions for the user to be authenticated by the login helper. Defaults to
+     *     `['email', 'user_posts']`.
+     * @param Facebook $fb the facebook object. If not provided will default to the object retrieved by `getFb` method.
      *
-     * @return FacebookSession
+     * @return string the generated login link
+     */
+    public function getFbLoginLink($callback = '#', $options = [], $permissions = ['email', 'user_posts'], $fb = null)
+    {
+        if ($fb === null) {
+            $fb = $this->getFb();
+        }
+        $url = $fb->getRedirectLoginHelper()->getLoginUrl($callback, $permissions);
+        $label = ArrayHelper::remove($options, 'label', Yii::t('kvsocial', 'Login with Facebook'));
+        return Html::a($label, $url, $options);
+    }
+
+    /**
+     * Check if a facebook configuration variable is set
+     *
+     * @param string $var the variable name in the configuration
+     * @param string $val the variable value to test
      *
      * @throws InvalidConfigException
      */
-    public function getFbSession($params)
+    protected static function checkFbConfig($var = '', $val = null)
     {
-        if (isset($this->_fbSession)) {
-            return $this->_fbSession;
+        if (!isset($val)) {
+            throw new InvalidConfigException("The Facebook '{$var}' has not been set.");
         }
-        $source = ArrayHelper::remove($params, 'source', '');
-        if (empty($source) || (($isObject = is_object($source)) && !method_exists($source, 'getSession'))) {
-            return null;
-        }
-        $this->_fbSession = $isObject ? $source->getSession() : new FacebookSession($source);
-        return $this->_fbSession;
-    }
-    
-    /**
-     * Gets the Yii modified redirect login helper
-     *
-     * @param string $url the url to redirect to
-     * @param array $paramss hould be set as $key=>$value,
-     * where $key is one of:
-     * - 'appId': string, the facebook application id (if not set, this
-     *    will default from module facebook settings) 
-     * - 'secret': string, the facebook application secret (if not set, this 
-     *    will default from module facebook settings)
-     * @return FacebookRedirectLoginHelperX
-     */
-    public function getFbLoginHelper($url = '', $params = []) {
-        $params += $this->facebook;
-        extract($params);
-        return new FacebookRedirectLoginHelperX($url, $appId, $secret);
-    }
-    
-    /**
-     * Returns the Facebook graph user object for current user
-     *
-     * @param FacebookSession $session the Facebook session instance
-     *
-     * @return GraphUser
-     */
-    public function getFbGraphUser($session)
-    {
-        return (new FacebookRequest(
-            $session, 'GET', '/me'
-        ))->execute()->getGraphObject(GraphUser::className());
     }
 }

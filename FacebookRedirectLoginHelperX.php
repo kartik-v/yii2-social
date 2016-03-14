@@ -1,8 +1,8 @@
 <?php
 /**
- * @copyright Copyright &copy; Kartik Visweswaran, Krajee.com, 2013 - 2015
+ * @copyright Copyright &copy; Kartik Visweswaran, Krajee.com, 2013 - 2016
  * @package yii2-social
- * @version 1.3.1
+ * @version 1.3.2
  */
 
 namespace kartik\social;
@@ -10,6 +10,7 @@ namespace kartik\social;
 use Yii;
 use yii\base\InvalidConfigException;
 use yii\helpers\Html;
+use \Facebook\Helpers\FacebookRedirectLoginHelper;
 
 /**
  * Extended FacebookRedirectLoginHelperX class
@@ -17,7 +18,7 @@ use yii\helpers\Html;
  * @author Kartik Visweswaran <kartikv2@gmail.com>
  * @since 1.0
  */
-class FacebookRedirectLoginHelperX extends \Facebook\FacebookRedirectLoginHelper
+class FacebookRedirectLoginHelperX extends FacebookRedirectLoginHelper
 {
     /**
      * @inheritdoc

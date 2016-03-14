@@ -14,11 +14,16 @@
     ],
     "require": {
         "kartik-v/yii2-krajee-base": "~1.7",
-        "facebook/php-sdk-v4": "~4.0"
+        "facebook/php-sdk-v4": "~5.0"
     },
     "autoload": {
         "psr-4": {
             "kartik\\social\\": ""
+        }
+    },
+    "extra": {
+        "branch-alias": {
+            "dev-master": "1.3.x-dev"
         }
     }
 }
