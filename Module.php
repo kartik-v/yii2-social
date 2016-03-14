@@ -12,7 +12,7 @@ use yii\helpers\Html;
 use yii\helpers\ArrayHelper;
 use yii\base\InvalidConfigException;
 use \Facebook\Facebook;
-use yii\web\session;
+use yii\web\Session;
 
 /**
  * Module for configuring all social widgets
