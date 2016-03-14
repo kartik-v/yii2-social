@@ -7,7 +7,8 @@ version 1.3.2 (under development)
 
 - (enh #42): Add Italian Translations.
 - (enh #43): Fix VK styles.
-- (enh #46): Update to Facebook SDK release v5.0. (BC Breaking Change) 
+- (enh #46): Update to Facebook SDK release v5.0. (BC Breaking Change).
+- (enh #47): Update Facebook Plugin for latest FB graph version (BC Breaking Change).
 - Add branch alias for dev-master latest release.
 
 version 1.3.1

@@ -9,7 +9,6 @@ namespace kartik\social;
 
 use Yii;
 use yii\base\InvalidConfigException;
-use yii\helpers\Html;
 
 /**
  * Widget to render various Facebook plugins
@@ -32,13 +31,9 @@ class FacebookPlugin extends Widget
     const SHARE = 'fb-share-button';
     const SEND = 'fb-send';
     const POST = 'fb-post';
+    const VIDEO = 'fb-video';
     const FOLLOW = 'fb-follow';
     const COMMENT = 'fb-comments';
-    const ACTIVITY = 'fb-activity';
-    const RECO = 'fb-recommendations';
-    const RECO_BAR = 'fb-recommendations-bar';
-    const LIKE_BOX = 'fb-like-box';
-    const FACEPILE = 'fb-facepile';
     const PAGE = 'fb-page';
 
     /**
@@ -52,7 +47,7 @@ class FacebookPlugin extends Widget
      * defaults to Facebook Comments
      */
     public $type = self::COMMENT;
-    
+
     /**
      * @var bool whether to load facebook JS asynchronously.
      * Defaults to `true`.
@@ -76,13 +71,9 @@ class FacebookPlugin extends Widget
             self::SHARE,
             self::SEND,
             self::POST,
+            self::VIDEO,
             self::FOLLOW,
             self::COMMENT,
-            self::ACTIVITY,
-            self::RECO,
-            self::RECO_BAR,
-            self::LIKE_BOX,
-            self::FACEPILE,
             self::PAGE,
         ];
         parent::init();
@@ -94,7 +85,10 @@ class FacebookPlugin extends Widget
             throw new InvalidConfigException("The Facebook 'appId' has not been set.");
         }
         if (!isset($this->noscript)) {
-            $this->noscript = Yii::t('kvsocial', 'Please enable JavaScript on your browser to view the Facebook {pluginName} plugin correctly on this site.', ['pluginName' => Yii::t('kvsocial', str_replace('fb-', '', $this->type))]
+            $this->noscript = Yii::t(
+                'kvsocial',
+                'Please enable JavaScript on your browser to view the Facebook {pluginName} plugin correctly on this site.',
+                ['pluginName' => Yii::t('kvsocial', str_replace('fb-', '', $this->type))]
             );
         }
         $this->registerAssets();

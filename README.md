@@ -16,13 +16,10 @@ Module that enables access to social plugins for Yii Framework 2.0. It includes 
   - Share Button
   - Send Button
   - Embedded Posts
+  - Embedded Videos
   - Follow Button
   - Comment Button
-  - Activity Feed
-  - Recommendations Feed
-  - Recommendations Bar
-  - Like Box
-  - Face Pile
+  - Page Plugin
 - Google Plus
   - Signin Plugin
   - +1 Button
