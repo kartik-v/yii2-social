@@ -1,8 +1,8 @@
-Change Log: `yii2-grid`
-=======================
+Change Log: `yii2-social`
+=========================
 
 version 1.3.2 (under development)
-=============
+=================================
 **Date:** 14-Mar-2016
 
 - (enh #42): Add Italian Translations.
