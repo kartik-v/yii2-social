@@ -197,7 +197,8 @@ class VKPlugin extends Widget
             $call     = "VK.Widgets.$widget($params)";
             if ($this->_initVk) {
                 $initOpts = Json::encode(['apiId' => $this->apiId, 'onlyWidgets' => true]);
-                $js = "VK.init({$initOpts});\n$js";
+                $js = "VK.init({$initOpts});";
+                $view->registerJs($js);
             }
         }
 
