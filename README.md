@@ -69,13 +69,13 @@ The preferred way to install this extension is through [composer](http://getcomp
 Either run
 
 ```
-$ php composer.phar require kartik-v/yii2-social "@dev"
+$ php composer.phar require nicanji/yii2-social "@dev"
 ```
 
 or add
 
 ```
-"kartik-v/yii2-social": "@dev"
+"nicanji/yii2-social": "@dev"
 ```
 
 to the `require` section of your `composer.json` file.
