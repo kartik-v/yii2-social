@@ -110,7 +110,9 @@ class Widget extends \yii\base\Widget
             ];
         }
         Yii::$app->i18n->translations['kvsocial'] = $this->i18n;
-        $this->noscript = Yii::t('kvsocial', 'You must enable Javascript on your browser for the site to work optimally and display sections completely.');
+        if ($this->noscript !== false && empty($this->noscript)) {
+            $this->noscript = Yii::t('kvsocial', 'You must enable Javascript on your browser for the site to work optimally and display sections completely.');
+        }
     }
 
     /**
