@@ -169,7 +169,7 @@ class Widget extends \yii\base\Widget
      */
     protected function renderNoScript()
     {
-        if ($this->noscript == false) {
+        if (empty($this->noscript)) {
             return '';
         }
         return '<noscript>' . Html::tag('div', $this->noscript, $this->noscriptOptions) . '</noscript>';

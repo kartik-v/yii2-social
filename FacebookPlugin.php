@@ -106,6 +106,7 @@ class FacebookPlugin extends Widget
     {
         $view = $this->getView();
         $async = $this->async ? "js.async = true;" : "";
+        $lang = str_replace('-', '_', $this->language);
         $js = <<< SCRIPT
 (function(d, s, id) {
     var js, fjs = d.getElementsByTagName(s)[0];
@@ -114,7 +115,7 @@ class FacebookPlugin extends Widget
     js = d.createElement(s);
     js.id = id;
     {$async}
-    js.src = "//connect.facebook.net/{$this->language}/sdk.js#xfbml=1&appId={$this->appId}&version=v2.0";
+    js.src = "//connect.facebook.net/{$lang}/sdk.js#xfbml=1&appId={$this->appId}&version=v2.0";
     fjs.parentNode.insertBefore(js, fjs);
 }(document, 'script', 'facebook-jssdk'));                
 SCRIPT;

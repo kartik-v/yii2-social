@@ -3,13 +3,20 @@ Change Log: `yii2-social`
 
 version 1.3.2 (under development)
 =================================
-**Date:** 14-Mar-2016
+**Date:** 16-Aug-2016
 
 - (enh #42): Add Italian Translations.
 - (enh #43): Fix VK styles.
 - (enh #46): Update to Facebook SDK release v5.0. (BC Breaking Change).
 - (enh #47): Update Facebook Plugin for latest FB graph version (BC Breaking Change).
 - Add branch alias for dev-master latest release.
+- (bug #51): Fix VkPlugin undefined variable error.
+- (enh #56): Auto set right Facebook language.
+- (enh #57): Initialize session via Yii standard methods.
+- (enh #58): Add Brazilian Portuguese Translations.
+- (enh #59): Add Portuguese Translations.
+- (bug #60): Correct noscript validation.
+- Add contribution templates.
 
 version 1.3.1
 =============

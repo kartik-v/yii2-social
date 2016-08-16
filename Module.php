@@ -180,8 +180,7 @@ class Module extends \yii\base\Module
         unset($params['appId'], $params['secret']);
         $persistence = ArrayHelper::getValue($params, 'persistent_data_handler');
         if ($persistence === 'session' && !session_id()) {
-            $session = new Session;
-            $session->open();
+            Yii::$app->session->open();
         }
         $this->_fbObject = new Facebook($params);
     }
