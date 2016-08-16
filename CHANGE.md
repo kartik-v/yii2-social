@@ -1,8 +1,8 @@
 Change Log: `yii2-social`
 =========================
 
-version 1.3.2 (under development)
-=================================
+version 1.3.2
+=============
 **Date:** 16-Aug-2016
 
 - (enh #42): Add Italian Translations.
