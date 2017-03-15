@@ -11,6 +11,7 @@ version 1.3.3
 - (enh #66): Add Lithuanian Translations.
 - (enh #67): Add new class `kartik\social\FacebookPersistentHandler`.
 - Update message config to include all default standard translation files.
+- (enh #68): New `FacebookPlugin::SAVE` button.
 
 version 1.3.2
 =============

@@ -30,6 +30,7 @@ class FacebookPlugin extends Widget
     const LIKE = 'fb-like';
     const SHARE = 'fb-share-button';
     const SEND = 'fb-send';
+    const SAVE = 'fb-save';
     const POST = 'fb-post';
     const VIDEO = 'fb-video';
     const FOLLOW = 'fb-follow';
@@ -60,7 +61,7 @@ class FacebookPlugin extends Widget
     public $settings = [];
 
     /**
-     * Initialize the widget
+     * @inheritdoc
      *
      * @throws InvalidConfigException
      */
@@ -70,6 +71,7 @@ class FacebookPlugin extends Widget
             self::LIKE,
             self::SHARE,
             self::SEND,
+            self::SAVE,
             self::POST,
             self::VIDEO,
             self::FOLLOW,

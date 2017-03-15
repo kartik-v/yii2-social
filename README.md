@@ -15,6 +15,7 @@ Module that enables access to social plugins for Yii Framework 2.0. It includes 
   - Like Button
   - Share Button
   - Send Button
+  - Save Button
   - Embedded Posts
   - Embedded Videos
   - Follow Button
