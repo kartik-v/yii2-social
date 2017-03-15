@@ -97,8 +97,8 @@ You can view [usage and demos](http://demos.krajee.com/social) on the module.
 
         // the global settings for the facebook plugins widget
         'facebook' => [
-            'appId' => 'FACEBOOK_APP_ID',
-            'secret' => 'FACEBOOK_APP_SECRET',
+            'app_id' => 'FACEBOOK_APP_ID',
+            'app_secret' => 'FACEBOOK_APP_SECRET',
         ],
 
         // the global settings for the google plugins widget

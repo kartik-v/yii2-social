@@ -1,8 +1,8 @@
 <?php
 /**
- * @copyright Copyright &copy; Kartik Visweswaran, Krajee.com, 2013 - 2016
+ * @copyright Copyright &copy; Kartik Visweswaran, Krajee.com, 2013 - 2017
  * @package yii2-social
- * @version 1.3.2
+ * @version 1.3.3
  */
 
 namespace kartik\social;
@@ -110,8 +110,7 @@ class FacebookPlugin extends Widget
         $js = <<< SCRIPT
 (function(d, s, id) {
     var js, fjs = d.getElementsByTagName(s)[0];
-    if (d.getElementById(id))
-        return;
+    if (d.getElementById(id)) return;
     js = d.createElement(s);
     js.id = id;
     {$async}

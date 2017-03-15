@@ -1,8 +1,8 @@
 <?php
 /**
- * @copyright Copyright &copy; Kartik Visweswaran, Krajee.com, 2013 - 2016
+ * @copyright Copyright &copy; Kartik Visweswaran, Krajee.com, 2013 - 2017
  * @package yii2-social
- * @version 1.3.2
+ * @version 1.3.3
  */
 use yii\helpers\Html;
 

@@ -1,7 +1,15 @@
 {
     "name": "kartik-v/yii2-social",
     "description": "Module containing useful widgets for Yii Framework 2.0 that integrates social functionalities from DISQUS, Facebook, Google etc.",
-    "keywords": ["yii2", "extension", "widget", "social", "disqus", "facebook", "twitter"],
+    "keywords": [
+        "yii2",
+        "extension",
+        "widget",
+        "social",
+        "disqus",
+        "facebook",
+        "twitter"
+    ],
     "homepage": "https://github.com/kartik-v/yii2-social",
     "type": "yii2-extension",
     "license": "BSD-3-Clause",
@@ -14,7 +22,7 @@
     ],
     "require": {
         "kartik-v/yii2-krajee-base": "~1.7",
-        "facebook/php-sdk-v4": "~5.0"
+        "facebook/graph-sdk": "~5.0"
     },
     "autoload": {
         "psr-4": {

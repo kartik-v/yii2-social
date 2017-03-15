@@ -1,6 +1,17 @@
 Change Log: `yii2-social`
 =========================
 
+version 1.3.3
+=============
+**Date:** 15-Mar-2017
+
+- (enh #62): Update Facebook SDK to release v5.0.
+- (enh #63): Add Polish Translations.
+- (enh #64): Add Dutch Translations.
+- (enh #66): Add Lithuanian Translations.
+- (enh #67): Add new class `kartik\social\FacebookPersistentHandler`.
+- Update message config to include all default standard translation files.
+
 version 1.3.2
 =============
 **Date:** 16-Aug-2016
