@@ -1,11 +1,16 @@
 {
-    "name": "kartik-v/yii2-social",
+    "name": "nicanji/yii2-social",
     "description": "Module containing useful widgets for Yii Framework 2.0 that integrates social functionalities from DISQUS, Facebook, Google etc.",
     "keywords": ["yii2", "extension", "widget", "social", "disqus", "facebook", "twitter"],
-    "homepage": "https://github.com/kartik-v/yii2-social",
+    "homepage": "https://github.com/nicanji/yii2-social",
     "type": "yii2-extension",
     "license": "BSD-3-Clause",
     "authors": [
+        {
+            "name": "Domenico Angiulli",
+            "email": "domenico.angiulli@weblagoon.it",
+            "homepage": "http://www.weblagoon.it/"
+        },
         {
             "name": "Kartik Visweswaran",
             "email": "kartikv2@gmail.com",
