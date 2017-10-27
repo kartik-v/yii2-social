@@ -2,7 +2,7 @@
 /**
  * @copyright Copyright &copy; Kartik Visweswaran, Krajee.com, 2013 - 2017
  * @package yii2-social
- * @version 1.3.3
+ * @version 1.3.4
  */
 use yii\helpers\Html;
 
@@ -18,11 +18,10 @@ use yii\helpers\Html;
     <script type="text/javascript">
         <?= $variables ?>
         (function () {
-            var dsq = document.createElement('script');
-            dsq.type = 'text/javascript';
-            dsq.async = true;
-            dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
-            (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+			var d = document, s = d.createElement('script');
+			s.src = 'https://<?= $shortname ?>.disqus.com/embed.js';
+			s.setAttribute('data-timestamp', +new Date());
+			(d.head || d.body).appendChild(s);
         })();
     </script>
     <!--<![endif]-->

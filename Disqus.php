@@ -2,13 +2,14 @@
 /**
  * @copyright Copyright &copy; Kartik Visweswaran, Krajee.com, 2013 - 2017
  * @package yii2-social
- * @version 1.3.3
+ * @version 1.3.4
  */
 
 namespace kartik\social;
 
 use Yii;
 use yii\base\InvalidConfigException;
+use yii\helpers\ArrayHelper;
 use yii\helpers\Html;
 
 /**
@@ -60,14 +61,14 @@ class Disqus extends Widget
         if (empty($this->settings['shortname'])) {
             throw new InvalidConfigException("Disqus 'shortname' has not been set in settings.");
         }
-        $variables = "";
+        $variables = "var disqus_config = function() {\n";
+		$shortname = ArrayHelper::remove($this->settings, 'shortname', '');
         foreach ($this->settings as $key => $value) {
-            $variables .= ($key == 'disable_mobile') ?
-                "var disqus_{$key} = {$value};\n" :
-                "var disqus_{$key} = '{$value}';\n";
+			$variables .= "\t\t\tthis.page.{$key} = " . (($key == 'disable_mobile') ? $value : "'{$value}';\n");
         }
-
+		$variables .= "\t\t};\n";
         $params = [
+			'shortname' => $shortname,
             'variables' => $variables,
             'credits' => $this->showCredits ? $this->credits : '',
             'noscript' => $this->renderNoScript()
