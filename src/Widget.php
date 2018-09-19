@@ -1,6 +1,6 @@
 <?php
 /**
- * @copyright Copyright &copy; Kartik Visweswaran, Krajee.com, 2013 - 2017
+ * @copyright Copyright &copy; Kartik Visweswaran, Krajee.com, 2013 - 2018
  * @package yii2-social
  * @version 1.3.4
  */
@@ -38,7 +38,7 @@ class Widget extends \yii\base\Widget
     public $tag = 'div';
 
     /**
-     * @var string the HTML attributes for the plugin container.
+     * @var array the HTML attributes for the plugin container.
      */
     public $options = [];
 

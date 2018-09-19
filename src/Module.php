@@ -1,6 +1,6 @@
 <?php
 /**
- * @copyright Copyright &copy; Kartik Visweswaran, Krajee.com, 2013 - 2017
+ * @copyright Copyright &copy; Kartik Visweswaran, Krajee.com, 2013 - 2018
  * @package yii2-social
  * @version 1.3.4
  */
@@ -10,6 +10,7 @@ namespace kartik\social;
 use Facebook\Facebook;
 use Yii;
 use yii\base\InvalidConfigException;
+use yii\base\Module as YiiModule;
 use yii\helpers\ArrayHelper;
 use yii\helpers\Html;
 
@@ -19,7 +20,7 @@ use yii\helpers\Html;
  * @author Kartik Visweswaran <kartikv2@gmail.com>
  * @since 1.0
  */
-class Module extends \yii\base\Module
+class Module extends YiiModule
 {
     /**
      * Default facebook graph api version
@@ -158,6 +159,7 @@ class Module extends \yii\base\Module
      * @return Facebook object
      *
      * @throws InvalidConfigException
+     * @throws \Facebook\Exceptions\FacebookSDKException
      */
     public function getFb($params = [])
     {
@@ -180,6 +182,8 @@ class Module extends \yii\base\Module
      * - `default_access_token`: _string_, the default facebook access token (optional).
      * - `persistent_data_handler`: _Facebook\PersistentData\PersistentDataInterface_, defaults to new class instance of
      *    `kartik\social\FacebookPersistentHandler`.
+     * @throws InvalidConfigException
+     * @throws \Facebook\Exceptions\FacebookSDKException
      */
     public function setFb($params = [])
     {
@@ -219,6 +223,8 @@ class Module extends \yii\base\Module
      * @param Facebook $fb the facebook object. If not provided will default to the object retrieved by `getFb` method.
      *
      * @return string the generated login link
+     * @throws InvalidConfigException
+     * @throws \Facebook\Exceptions\FacebookSDKException
      */
     public function getFbLoginLink($callback = '#', $options = [], $permissions = ['email', 'user_posts'], $fb = null)
     {

@@ -3,10 +3,14 @@ Change Log: `yii2-social`
 
 ## Version 1.3.4
 
-**Date:** 27-Oct-2017
+**Date:** 19-Sep-2018
 
+- Move all source code to `src` directory.
+- Enhance Disqus Plugin Count validation.
+- (enh #76): Add Myanmar Translations.
+- (enh #75): Update Russian Translations.
 - (enh #74): Update disqus plugin initialization.
-- (enh #69): Update Czech Translations.
+- (enh #70): Update Czech Translations.
 
 ## Version 1.3.3
 

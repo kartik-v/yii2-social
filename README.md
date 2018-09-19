@@ -147,4 +147,4 @@ You can view [usage and demos](http://demos.krajee.com/social) on the module.
 
 ## License
 
-**yii2-social** is released under the BSD 3-Clause License. See the bundled `LICENSE.md` for details.
+**yii2-social** is released under the BSD-3-Clause License. See the bundled `LICENSE.md` for details.
