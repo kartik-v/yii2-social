@@ -1,6 +1,12 @@
 Change Log: `yii2-social`
 =========================
 
+## Version 1.3.5
+
+**Date:** 21-Sep-2018
+
+- Extend using Krajee `kartik\base\Module` 
+
 ## Version 1.3.4
 
 **Date:** 19-Sep-2018

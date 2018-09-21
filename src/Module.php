@@ -2,7 +2,7 @@
 /**
  * @copyright Copyright &copy; Kartik Visweswaran, Krajee.com, 2013 - 2018
  * @package yii2-social
- * @version 1.3.4
+ * @version 1.3.5
  */
 
 namespace kartik\social;
@@ -10,7 +10,6 @@ namespace kartik\social;
 use Facebook\Facebook;
 use Yii;
 use yii\base\InvalidConfigException;
-use yii\base\Module as YiiModule;
 use yii\helpers\ArrayHelper;
 use yii\helpers\Html;
 
@@ -20,7 +19,7 @@ use yii\helpers\Html;
  * @author Kartik Visweswaran <kartikv2@gmail.com>
  * @since 1.0
  */
-class Module extends YiiModule
+class Module extends \kartik\base\Module
 {
     /**
      * Default facebook graph api version
@@ -129,6 +128,11 @@ class Module extends YiiModule
      *   `['class' => 'alert alert-danger']`.
      */
     public $githubX = [];
+
+    /**
+     * @inheritdoc
+     */
+    protected $_msgCat = 'kvsocial';
 
     /**
      * @var Facebook the Facebook object

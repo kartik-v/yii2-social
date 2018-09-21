@@ -2,7 +2,7 @@
 /**
  * @copyright Copyright &copy; Kartik Visweswaran, Krajee.com, 2013 - 2018
  * @package yii2-social
- * @version 1.3.4
+ * @version 1.3.5
  */
 
 namespace kartik\social;
