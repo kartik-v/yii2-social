@@ -208,7 +208,9 @@ if (window.VK && $check) {
     $call;
 } else {
     \$('#$scriptId').load(function() {
-        $call;
+        if (typeof VK !== 'undefined') {
+            $call;
+        }
     });
 }
 SCRIPT;
