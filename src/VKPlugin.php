@@ -207,7 +207,7 @@ class VKPlugin extends Widget
 if (window.VK && $check) {
     $call;
 } else {
-    \$('#$scriptId').load(function() {
+    \$('#$scriptId').on('load', function() {
         $call;
     });
 }
