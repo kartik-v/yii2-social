@@ -1,6 +1,12 @@
 Change Log: `yii2-social`
 =========================
 
+## Version 1.3.6
+
+**Date:** 31-Oct-2019
+
+- (bug #78) Fix deprecated usage of jQuery method `load()` for VK plugin.
+
 ## Version 1.3.5
 
 **Date:** 21-Sep-2018
