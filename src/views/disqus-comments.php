@@ -21,11 +21,12 @@ use yii\helpers\Html;
 ?>
 	<div id="disqus_thread"></div>
 	<!--[if (gt IE 8)]><!-->
-	<script type="text/javascript">
+	<script type="text/javascript" async>
         <?= $variables ?>
         (function () {
             var d = document, s = d.createElement('script');
             s.src = 'https://<?= $shortname ?>.disqus.com/embed.js';
+            s.setAttribute('async', true);
             s.setAttribute('data-timestamp', +new Date());
             (d.head || d.body).appendChild(s);
         })();
