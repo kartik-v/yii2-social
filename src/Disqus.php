@@ -88,6 +88,7 @@ class Disqus extends Widget
             $this->getView()->registerJsFile("//{$shortname}.disqus.com/count.js", [
                 'id' => "dsq-count-scr",
                 'async' => true,
+                'defer' => true,
             ]);
         } else {
             $variables = "var disqus_config = function() {\n";
