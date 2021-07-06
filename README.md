@@ -110,6 +110,7 @@ You can view [usage and demos](http://demos.krajee.com/social) on the module.
         'facebook' => [
             'app_id' => 'FACEBOOK_APP_ID',
             'app_secret' => 'FACEBOOK_APP_SECRET',
+            'default_graph_version' => 'vN.N',
         ],
 
         // the global settings for the google plugins widget
